@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-02-16T11:45:05.937Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="oL4pC6dU9rkZuPDgV7fX" version="23.1.5" type="github">
+<mxfile host="app.diagrams.net" modified="2024-02-16T11:47:11.552Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="8bWMV8_KD92j2EKlciXf" version="23.1.5" type="github">
   <diagram name="Page-1" id="p-BYOA4yDSi4gFtBQyE3">
     <mxGraphModel dx="880" dy="476" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -137,6 +137,9 @@
             <mxPoint x="570" y="290" as="sourcePoint" />
             <mxPoint x="550" y="240" as="targetPoint" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="HTBEHK6J-pBRNWYHVBWt-69" value="System Architecture Django Jam" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="230" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
