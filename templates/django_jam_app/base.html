@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load static %}
+{% load django_jam_template_tags %}
+
+<html>
+  <head lang="en">
+    <meta charset="UTF-8" />
+    <title>
+      DJ Jam -
+      {% block title_block %}
+        How to Jam with Django!
+      {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'CSS/base_Css.css' %}" />
+  </head>
+  <body>
+    <div>
+      {% block body_block %}
+      {% endblock %}
+    </div>
+    <div>
+      {% block sidebar_block %}
+        {% get_tune_list tune %}
+      {% endblock %}
+    </div>
+      <hr />
+    <div>
+      <ul>
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'django_jam_app:logout' %}">Logout</a></li>
+        <li><a href="{% url 'django_jam_app:add_tune' %}">Add a New Tune</a></li>
+        {% else %}
+        <li><a href="{% url 'django_jam_app:register' %}">Sign Up</a></li>
+        <li><a href="{% url 'django_jam_app:login' %}">Login</a></li>
+        {% endif %}
+        <li><a href="{% url 'django_jam_app:about' %}">About</a></li>
+        <li><a href="{% url 'django_jam_app:index' %}">Index</a></li>
+      </ul>
+    </div>
+  </body>
+</html>

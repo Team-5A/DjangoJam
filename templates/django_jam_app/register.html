@@ -1,0 +1,30 @@
+{% extends 'django_jam_app/base.html' %}
+{% load static %}
+
+{% block title_block %}
+    Register
+{% endblock %}
+
+{% block body_block %}
+<h1>Register for Django Jam</h1>
+
+{% if registered %}
+    Jam says: <strong>thank you for registering!</strong>
+    <a href="{% url 'django_jam_app:index' %}">Return to the homepage.</a><br />
+
+{% else %}
+    Jam says: <strong>register here!</strong><br />
+    <form id="user_form" method="post" action="{% url 'django_jam_app:register' %}"
+    enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        {{ user_form.as_p }}
+        {{ profile_form.as_p }}
+
+        <!-- Provide a button to click to submit the form. -->
+        <input type="submit" name="submit" value="Register" />
+    </form>
+
+{% endif %}
+{% endblock %}

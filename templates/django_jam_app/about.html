@@ -1,0 +1,23 @@
+{% extends 'django_jam_app/base.html' %}
+{% load static %}
+
+{% block title_block %}
+    About Page
+{% endblock %}
+
+{% block body_block %}
+    <h1>Jam says...</h1>
+    <div>
+        here is the about page!<br />
+        <p>User Visits: {{ visits }}</p>
+
+<!--        <img src="{{ MEDIA_URL }}Watkins.png" alt="Picture of Watkins a cat."/><br />-->
+
+    </div>
+    <div>
+<!--        <img src="{% static 'images/CRango.png' %}" alt="Picture of Rango" />-->
+    </div>
+    <div>
+        <h3> This demo has been put together by F W Levack. </h3>
+    </div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'django_jam_app/base.html' %}
+{% load static %}
+
+{% block title_block %}
+    Home Page
+{% endblock %}
+
+{% block body_block %}
+    <h1>Jam says...</h1>
+    <div>
+
+        {% if user.is_authenticated %}
+            howdy {{ user.username }}!
+        {% else %}
+            hey there artist!
+        {% endif %}
+
+
+        <br />
+        <strong>{{ boldmessage }}</strong>
+        <br />
+
+    </div>
+
+    <!--<div>
+        {% if tunes %}
+        <strong>Most Liked Tunes</strong>
+         <ul>
+            {% for tune in tunes %}
+                <li>{{ tune.name }}</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+            <strong>There are no tunes present.</strong>
+        {% endif %}
+    </div>-->
+
+{% endblock %}
