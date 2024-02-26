@@ -7,3 +7,18 @@
 - Khantushig Boldbaatar (2840477)
 - Scott Glidden (2784363)
 - Thomas Tse (2736345)
+
+
+# Setup
+~~~
+python manage.py makemigrations django_jam_app
+python manage.py migrate
+python populate_jam.py
+python manage.py createsuperuser
+
+# Folllow instrutions to gan admin user.
+
+python manage.py runserver #Ip&Port
+
+# If IP address isnt in allowed hosts please add to ALLOWED_HOSTS in setting.py.
+~~~
