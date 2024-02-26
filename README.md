@@ -18,7 +18,8 @@ python manage.py createsuperuser
 
 # Folllow instrutions to gan admin user.
 
-python manage.py runserver #Ip&Port
+python manage.py runserver 
+#Ip&Port
 
 # If IP address isnt in allowed hosts please add to ALLOWED_HOSTS in setting.py.
 ~~~
