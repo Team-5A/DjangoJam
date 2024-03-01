@@ -16,7 +16,7 @@ python manage.py migrate
 python populate_jam.py
 python manage.py createsuperuser
 
-# Folllow instrutions to gan admin user.
+# Folllow instrutions to gain admin user.
 
 python manage.py runserver 
 #Ip&Port
