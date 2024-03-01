@@ -10,6 +10,9 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     website = models.URLField(blank=True)
     picture = models.ImageField(upload_to='profile_images', blank=True)
+    total_likes = models.IntegerField(default=0)
+    self_likes = models.IntegerField(default=0)
+    number_of_tunes_played = models.IntegerField(default=0)
     slug = models.SlugField(unique=True, default='default-slug')
 
     def save(self, *args, **kwargs):

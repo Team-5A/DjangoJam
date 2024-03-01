@@ -12,3 +12,8 @@ def get_tune_list(current_tune=None):
 @register.filter(name='is_current_user')
 def is_current_user(user_profile, current_user):
     return user_profile.user == current_user
+
+
+@register.filter(name='count_tunes')
+def count_tunes(user):
+    return Tune.objects.filter(artist=user).count()

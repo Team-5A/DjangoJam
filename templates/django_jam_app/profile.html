@@ -10,4 +10,35 @@
     {% endif %}
 {% endblock %}
 
+{% block body_block %}
+
+    {% if user_profile|is_current_user:request.user %}
+        <h1>Your Profile</h1>
+    {% else %}
+        <h1>{{ user_profile.user.username }}'s Profile</h1>
+    {% endif %}
+     <div>
+         <!-- Profile Picture From Media -->
+         <strong> {{ MEDIA_URL }}{{ user_profile.picture }} </strong>
+         <img src="{{ MEDIA_URL }}{{ user_profile.picture }}" alt="Profile Picture" class="profile-picture">
+         <!-- User Info -->
+         <!-- Username -->
+         <h2>{{ user_profile.user.username }}</h2>  
+        
+         <h5> Stats </h5>
+         <!-- Number of Tunes created -->
+         <p>{{ user_profile.user|count_tunes }} tunes made!</p>
+         
+         <!-- Total likes awarded -->
+         <p>{{ user_profile.total_likes }} Total likes!</p>
+         
+         <!-- Number of Tunes played -->
+         <p>Played {{ user_profile.number_of_tunes_played}} tunes!</p>
+         
+         <!-- Number of Tunes liked -->
+         <p>Liked {{ user_profile.self_likes }} tunes!</p>
+    </div>
+{% endblock %}
+
+
 
