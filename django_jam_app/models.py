@@ -19,7 +19,7 @@ class UserProfile(models.Model):
 class Tune(models.Model):
     ID = models.AutoField(primary_key=True)
     name = models.CharField(max_length=64, unique=True)
-    artist = models.ForeignKey(User, on_delete=models.CASCADE)
+    creator = models.ForeignKey(User, on_delete=models.CASCADE)
     views = models.IntegerField(default=0)
     likes = models.IntegerField(default=0)
     notes = models.CharField(max_length=64)

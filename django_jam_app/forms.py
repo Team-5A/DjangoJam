@@ -16,13 +16,13 @@ class TuneForm(forms.ModelForm):
         fields = ('name', 'notes', 'beats_per_minute')
 
     def __init__(self, *args, **kwargs):
-        self.artist = kwargs.pop('artist', None)
+        self.creator = kwargs.pop("creator", None)
         super(TuneForm, self).__init__(*args, **kwargs)
 
     def save(self, commit=True):
         instance = super(TuneForm, self).save(commit=False)
-        if self.artist:
-            instance.artist = self.artist
+        if self.creator:
+            instance.creator = self.creator
         if commit:
             instance.save()
         return instance
