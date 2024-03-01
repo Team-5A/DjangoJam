@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django_jam_app.models import Tune, UserProfile
-from django_jam_app.forms import TuneForm, UserForm, UserProfileForm
+from django_jam_app.forms import TuneForm, UserForm, UserProfileForm, SearchForm
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
 
@@ -133,6 +134,19 @@ def profile(request, slug):
     user_profile = get_object_or_404(UserProfile, slug=slug)
     context_dict['user_profile'] = user_profile
     return render(request, 'django_jam_app/profile.html', context=context_dict)
+
+
+def explore(request):
+    form = SearchForm(request.GET)
+    user_profiles = []
+    tunes = []
+
+    if form.is_valid():
+        query = form.cleaned_data['query']
+        user_profiles = UserProfile.objects.filter(user__username__icontains=query)
+        tunes = Tune.objects.filter(name__icontains=query)
+
+    return render(request, 'django_jam_app/explore.html', {'form': form, 'user_profiles': user_profiles, 'tunes': tunes})
 
 
 @login_required
