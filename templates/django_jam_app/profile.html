@@ -1,0 +1,13 @@
+{% extends 'django_jam_app/base.html' %}
+{% load static %}
+{% load django_jam_template_tags %}
+
+{% block title_block %}
+    {% if user_profile|is_current_user:request.user %}
+        Your Profile
+    {% else %}
+        {{ user_profile.user.username }}'s Profile
+    {% endif %}
+{% endblock %}
+
+

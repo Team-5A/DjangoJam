@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django_jam_app.models import Tune, UserProfile
 from django_jam_app.forms import TuneForm, UserForm, UserProfileForm
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
@@ -62,29 +62,6 @@ def add_tune(request):
             print(form.errors)
 
     return render(request, 'django_jam_app/add_tune.html', {'form': form})
-
-
-# @login_required
-# def add_page(request, category_name_slug):
-#     try:
-#         category = Category.objects.get(slug=category_name_slug)
-#     except Category.DoesNotExist:
-#         category = None
-#
-#     if category is None:
-#         return redirect('/django_jam_app/')
-#
-#     form = PageForm()
-#
-#     if request.method == 'POST':
-#         form = PageForm(request.POST)
-#
-# if form.is_valid(): if category: page = form.save(commit=False) page.category = category page.views = 0 page.save()
-# return redirect(reverse('django_jam_app:show_category', kwargs={'category_name_slug': category_name_slug})) else:
-# print(form.errors)
-#
-#     context_dict = {'form': form, 'category': category}
-#     return render(request, 'django_jam_app/add_page.html', context=context_dict)
 
 
 def register(request):
@@ -150,9 +127,12 @@ def user_login(request):
         return render(request, 'django_jam_app/login.html')
 
 
-# @login_required
-# def restricted(request):
-#     return render(request, 'django_jam_app/restricted.html')
+def profile(request, slug):
+    context_dict = {}
+    # Retrieve the user profile based on the slug
+    user_profile = get_object_or_404(UserProfile, slug=slug)
+    context_dict['user_profile'] = user_profile
+    return render(request, 'django_jam_app/profile.html', context=context_dict)
 
 
 @login_required
