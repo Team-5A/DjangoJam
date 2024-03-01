@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d144bbc4-f6ac-477f-86b1-c4cf7c52ced0" name="Changes" comment="Add - New custom template tag to show tunes by user. Then added to profile.html. Fixed - Trying to show profile picture when none is uploaded.">
+    <list default="true" id="d144bbc4-f6ac-477f-86b1-c4cf7c52ced0" name="Changes" comment="Amended - Changed content of populate_jam.py to give accurate test data. 4 users and 7 tunes to populate.">
+      <change afterPath="$PROJECT_DIR$/templates/django_jam_app/explore.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/populate_jam.py" beforeDir="false" afterPath="$PROJECT_DIR$/populate_jam.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django_jam_app/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_jam_app/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django_jam_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_jam_app/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django_jam_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_jam_app/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/django_jam_app/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/django_jam_app/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -265,7 +269,7 @@
       <workItem from="1709132769252" duration="503000" />
       <workItem from="1709284854662" duration="2922000" />
       <workItem from="1709293322895" duration="4680000" />
-      <workItem from="1709303823422" duration="7763000" />
+      <workItem from="1709303823422" duration="12346000" />
     </task>
     <task id="LOCAL-00001" summary="Fraser L First Commit for Base Django Jam Project.">
       <option name="closed" value="true" />
@@ -307,7 +311,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709309615372</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Amended - Changed content of populate_jam.py to give accurate test data. 4 users and 7 tunes to populate.">
+      <option name="closed" value="true" />
+      <created>1709311733555</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1709311733555</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -330,7 +342,8 @@
     <MESSAGE value="Add - Started work on user profile.html base. work when logged into users personal profile and when checking others Fraser Levack" />
     <MESSAGE value="Add - Amended models.py , forms.py, profile.html to add profile stats. Includes new custom template tag to count user's tunes." />
     <MESSAGE value="Add - New custom template tag to show tunes by user. Then added to profile.html. Fixed - Trying to show profile picture when none is uploaded." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add - New custom template tag to show tunes by user. Then added to profile.html. Fixed - Trying to show profile picture when none is uploaded." />
+    <MESSAGE value="Amended - Changed content of populate_jam.py to give accurate test data. 4 users and 7 tunes to populate." />
+    <option name="LAST_COMMIT_MESSAGE" value="Amended - Changed content of populate_jam.py to give accurate test data. 4 users and 7 tunes to populate." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -351,6 +364,6 @@
     <SUITE FILE_PATH="coverage/DjangoJam$python_manage_py_createsuperuser.coverage" NAME="python manage.py createsuperuser Coverage Results" MODIFIED="1708959574612" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DjangoJam$python_manage_py_runserver__Ip_Port.coverage" NAME="python manage.py runserver #Ip&amp;Port Coverage Results" MODIFIED="1708959735178" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Django_Jam_Base$settings.coverage" NAME="settings Coverage Results" MODIFIED="1708704361561" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/django_jam_project" />
-    <SUITE FILE_PATH="coverage/DjangoJam$python_manage_py_runserver.coverage" NAME="python manage.py runserver Coverage Results" MODIFIED="1709311494527" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/DjangoJam$python_manage_py_runserver.coverage" NAME="python manage.py runserver Coverage Results" MODIFIED="1709317753467" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

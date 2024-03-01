@@ -1,0 +1,38 @@
+{% extends 'django_jam_app/base.html' %}
+{% load static %}
+
+{% block title_block %}
+    Explore Page
+{% endblock %}
+
+{% block body_block %}
+    
+    <h1>Explore</h1>
+
+    <form method="get" action="{% url 'django_jam_app:explore' %}">
+        {{ form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+    
+    <h2>Users</h2>
+    <ul>
+        {% for user_profile in user_profiles %}
+            <li>
+            <strong><a href="{% url 'django_jam_app:profile' user_profile.slug %}">{{ user_profile.user.username }}</a></strong>
+            </li>
+        {% empty %}
+            <li>No users found</li>
+        {% endfor %}
+    </ul>
+    
+    <h2>Tunes</h2>
+    <ul>
+        {% for tune in tunes %}
+            <li>{{ tune.name }}</li>
+        {% empty %}
+            <li>No tunes found</li>
+        {% endfor %}
+    </ul>
+
+
+{% endblock %}
