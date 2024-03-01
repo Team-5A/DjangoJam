@@ -1,70 +1,69 @@
 import os
+import random
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE',
                       'django_jam_project.settings')
 
 import django
 django.setup()
+from django.utils.text import slugify
+from django.contrib.auth.models import User
 from django_jam_app.models import Tune, UserProfile
 
 
-#def populate():
-    # First, we will create lists of dictionaries containing the pages
-    # we want to add into each category.
-    # Then we will create a dictionary of dictionaries for our categories.
-    # This might seem a little confusing, but it allows us to iterate
-    # through each data structure, and add the data to our models.
-#     python_pages = [
-#         {'title': 'Official Python Tutorial',
-#          'url': 'http://docs.python.org/3/tutorial/',
-#          'views': 34},
-#         {'title': 'How to Think like a Computer Scientist',
-#          'url': 'http://www.greenteapress.com/thinkpython/',
-#          'views': 3},
-#         {'title': 'Learn Python in 10 Minutes', 'url': 'http://www.korokithakis.net/tutorials/python/',
-#          'views': 78}]
-#
-#     django_pages = [{'title': 'Official Django Tutorial',
-#                      'url': 'https://docs.djangoproject.com/en/2.1/intro/tutorial01/',
-#                      'views': 79},
-#                     {'title': 'Django Rocks',
-#                      'url': 'http://www.djangorocks.com/',
-#                      'views': 25},
-#                     {'title': 'How to Tango with Django',
-#                      'url': 'http://www.tangowithdjango.com/',
-#                      'views': 45}]
-#
-#     other_pages = [{'title': 'Bottle', 'url': 'http://bottlepy.org/docs/dev/',
-#                     'views': 12},
-#                    {'title': 'Flask', 'url': 'http://flask.pocoo.org',
-#                     'views': 1}]
-#
-#     cats = {'Python': {'pages': python_pages, 'views': 128, 'likes': 64},
-#             'Django': {'pages': django_pages, 'views': 64, 'likes': 32},
-#             'Other Frameworks': {'pages': other_pages, 'views': 32, 'likes': 16}}
-#
-#     for cat, cat_data in cats.items():
-#         c = add_cat(cat, cat_data['views'], cat_data['likes'])
-#         for p in cat_data['pages']:
-#             add_page(c, p['title'], p['url'], p['views'])
-#
-#
-# def add_page(cat, title, url, views=0):
-#     p = Page.objects.get_or_create(category=cat, title=title)[0]
-#     p.url = url
-#     p.views = views
-#     p.save()
-#     return p
-#
-#
-# def add_cat(name, views, likes):
-#     c = Category.objects.get_or_create(name=name)[0]
-#     c.views = views
-#     c.likes = likes
-#     c.save()
-#     return c
+def populate_user_profiles():
+    # Sample user data
+    users_data = [
+        {'username': 'user1', 'email': 'user1@example.com', 'password': 'password1'},
+        {'username': 'user2', 'email': 'user1@example.com', 'password': 'password2'},
+        {'username': 'user3', 'email': 'user1@example.com', 'password': 'password3'},
+        {'username': 'user4', 'email': 'user2@example.com', 'password': 'password3'},
+        # Add more user data as needed
+    ]
+
+    for data in users_data:
+        random.seed(42)
+        user = User.objects.create_user(data['username'], data['email'], data['password'])
+        profile = UserProfile.objects.create(
+            user=user,
+            website=f'http://www.{data["username"]}.com',
+            total_likes=random.randint(0, 20),
+            self_likes=random.randint(0, 20),
+            number_of_tunes_played=random.randint(0, 50),
+            slug=slugify(data['username'])
+        )
+        profile.save()
+        print(f"Created UserProfile for {data['username']}")
+
+
+def populate_tunes():
+    # Sample tune data
+    tunes_data = [
+        {'name': 'Tune 1', 'artist_username': 'user1', 'views': 100, 'likes': 50, 'notes': 'AAABBB'},
+        {'name': 'Tune 2', 'artist_username': 'user1', 'views': 150, 'likes': 70, 'notes': 'CCCCBBBB'},
+        {'name': 'Tune 3', 'artist_username': 'user1', 'views': 200, 'likes': 90, 'notes': 'AAAA'},
+        {'name': 'Tune 4', 'artist_username': 'user2', 'views': 250, 'likes': 110, 'notes': 'CCCBBAAD'},
+        {'name': 'Tune 5', 'artist_username': 'user4', 'views': 300, 'likes': 130, 'notes': 'GGGGAAA'},
+        {'name': 'Tune 6', 'artist_username': 'user3', 'views': 350, 'likes': 150, 'notes': 'AAAAAGGG'},
+        {'name': 'Tune 7', 'artist_username': 'user3', 'views': 400, 'likes': 170, 'notes': 'GGGGGGGG'}
+    ]
+
+    for data in tunes_data:
+        # Get the artist user
+        artist_user = User.objects.get(username=data['artist_username'])
+        tune = Tune.objects.create(
+            name=data['name'],
+            artist=artist_user,
+            views=data['views'],
+            likes=data['likes'],
+            notes=data['notes'],
+            slug=slugify(data['name'])
+        )
+        tune.save()
+        print(f"Created Tune: {data['name']}")
 
 
 if __name__ == '__main__':
     print('Starting Rango population script...')
-    #populate()
+    populate_user_profiles()
+    populate_tunes()
