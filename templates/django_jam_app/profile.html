@@ -19,8 +19,12 @@
     {% endif %}
      <div>
          <!-- Profile Picture From Media -->
-         <strong> {{ MEDIA_URL }}{{ user_profile.picture }} </strong>
-         <img src="{{ MEDIA_URL }}{{ user_profile.picture }}" alt="Profile Picture" class="profile-picture">
+         {% if user_profile.picture %}
+             <strong> {{ MEDIA_URL }}{{ user_profile.picture }} </strong>
+             <img src="{{ MEDIA_URL }}{{ user_profile.picture }}" alt="Profile Picture" class="profile-picture">
+         {% else %}
+            <strong> No profile picture uploaded.</strong>
+         {% endif %}
          <!-- User Info -->
          <!-- Username -->
          <h2>{{ user_profile.user.username }}</h2>  
@@ -37,6 +41,11 @@
          
          <!-- Number of Tunes liked -->
          <p>Liked {{ user_profile.self_likes }} tunes!</p>
+     
+         <h5> {{ user_profile.user.username }}'s Tunes </h5>
+     
+         <!-- Tunes Created by User -->
+         {% get_tunes_by_user user_profile.user %}
     </div>
 {% endblock %}
 
