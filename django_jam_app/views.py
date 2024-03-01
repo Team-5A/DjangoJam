@@ -51,7 +51,7 @@ def add_tune(request):
     form = TuneForm()
 
     if request.method == 'POST':
-        form = TuneForm(request.POST, artist=request.user)
+        form = TuneForm(request.POST, creator=request.user)
 
         if form.is_valid():
 
