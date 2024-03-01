@@ -4,16 +4,16 @@ from django.contrib.auth.models import User
 
 
 class TuneForm(forms.ModelForm):
-    name = forms.CharField(max_length=128, help_text="Please enter the Tune's name.")
-    notes = forms.CharField(max_length=16, help_text="Please enter the Tune's notes.")
+    name = forms.CharField(max_length=64, help_text="Please enter the Tune's name.")
+    notes = forms.CharField(max_length=64, help_text="Please enter the Tune's notes.")
+    beats_per_minute = forms.IntegerField(help_text="Please enter the Tune's BPM.")
     views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     likes = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     slug = forms.CharField(widget=forms.HiddenInput(), required=False)
 
-
     class Meta:
         model = Tune
-        fields = ('name', 'notes',)
+        fields = ('name', 'notes', 'beats_per_minute')
 
     def __init__(self, *args, **kwargs):
         self.artist = kwargs.pop('artist', None)

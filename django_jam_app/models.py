@@ -18,11 +18,12 @@ class UserProfile(models.Model):
 # tune model has foreign key relationship with user profile model.
 class Tune(models.Model):
     ID = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=128, unique=True)
+    name = models.CharField(max_length=64, unique=True)
     artist = models.ForeignKey(User, on_delete=models.CASCADE)
     views = models.IntegerField(default=0)
     likes = models.IntegerField(default=0)
-    notes = models.CharField(max_length=16)
+    notes = models.CharField(max_length=64)
+    beats_per_minute = models.IntegerField(default=0)
     # add slug field to store the url of the tune.
     slug = models.SlugField(unique=True)
 
