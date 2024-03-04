@@ -1,9 +1,9 @@
 <ul>
   {% if Tunes %}
-    {% for c in Tunes %}
+    {% for each_tune in Tunes %}
         <li>
         <strong>
-          {{ c.name }}
+          {{ each_tune.name }}
         </strong>
         </li>
     {% endfor %}

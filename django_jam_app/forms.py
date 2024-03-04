@@ -39,7 +39,7 @@ class UserForm(forms.ModelForm):
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('website', 'picture',)
+        fields = ('picture',)
         total_likes = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
         self_likes = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
         number_of_tunes_played = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
