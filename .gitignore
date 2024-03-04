@@ -161,4 +161,6 @@ cython_debug/
 
 # Directory
 media/ 
-# added to prevent uploading local repo profile_images
+# added media to prevent uploading local repo profile_images
+django_jam_app/migrations/
+# added migrations to prevent uploading local migration files
