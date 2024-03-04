@@ -8,7 +8,6 @@ from django.contrib.auth.models import User
 # user model with relationship to django user model.
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    website = models.URLField(blank=True)
     picture = models.ImageField(upload_to='profile_images', blank=True)
     total_likes = models.IntegerField(default=0)
     self_likes = models.IntegerField(default=0)
