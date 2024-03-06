@@ -40,20 +40,5 @@
       {% block body_block %}
       {% endblock %}
     </main>
-
-    <div>
-      <ul>
-        {% if user.is_authenticated %}
-        <li><a href="{% url 'django_jam_app:logout' %}">Logout</a></li>
-        <li><a href="{% url 'django_jam_app:add_tune' %}">Add a New Tune</a></li>
-        {% else %}
-        <li><a href="{% url 'django_jam_app:register' %}">Sign Up</a></li>
-        <li><a href="{% url 'django_jam_app:login' %}">Login</a></li>
-        {% endif %}
-        <li><a href="{% url 'django_jam_app:about' %}">About</a></li>
-        <li><a href="{% url 'django_jam_app:explore' %}">Explore</a></li>
-        <li><a href="{% url 'django_jam_app:index' %}">Index</a></li>
-      </ul>
-    </div>
   </body>
 </html>
