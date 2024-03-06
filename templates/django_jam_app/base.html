@@ -13,20 +13,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
   </head>
   <body>
+    <nav class="navbar">
+      <a class="logo" href="{% url 'django_jam_app:index' %}">DjangoJam</a>
+
+      {% comment %} links {% endcomment %}
+      <ul>
+        <li><a href="{% url 'django_jam_app:add_tune' %}">create</a></li>
+        <li><a href="{% url 'django_jam_app:explore' %}">explore</a></li>
+        <li><a href="{% url 'django_jam_app:about' %}">about</a></li>
+
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'django_jam_app:logout' %}">logout</a></li>
+        {% else %}
+        <li><a href="{% url 'django_jam_app:login' %}">login</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+
     <main>
       {% block body_block %}
       {% endblock %}
     </main>
-
-    <hr />
-
-    <div>
-      {% block sidebar_block %}
-        {% get_tune_list %} 
-      {% endblock %}
-    </div>
-
-    <hr />
 
     <div>
       <ul>
