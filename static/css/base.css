@@ -10,6 +10,7 @@
   --primary-color: #219653;
   --primary-color-bright: #27ae60;
   --accent-color: #2d9cdb;
+  --accent-color-bright: #30aef7;
 
   --side-padding: clamp(2rem, 12vw, 17rem);
 
@@ -20,6 +21,17 @@
   --bold: 600;
   --extrabold: 700;
   --black: 800;
+}
+
+@media screen and (max-width: 768px) {
+  :root {
+    --side-padding: clamp(1rem, 5vw, 17rem);
+  }
+}
+
+::selection {
+  background-color: var(--primary-color);
+  color: var(--text-color);
 }
 
 body {
@@ -66,4 +78,10 @@ body {
 .navbar ul li a.active {
   color: var(--primary-color);
   opacity: 1;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }

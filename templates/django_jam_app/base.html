@@ -8,11 +8,15 @@
 
     <title>DjangoJam - {% block title_block %} Jam with Django! {% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/components.css' %}" />
 
     {% comment %} link 'Inter' google font {% endcomment %}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+    {% block head_block %}
+    {% endblock %}
   </head>
   <body>
     <nav class="navbar">
@@ -38,9 +42,9 @@
       </ul>
     </nav>
 
-    <main>
+    <div class="content-container">
       {% block body_block %}
       {% endblock %}
-    </main>
+    </div>
   </body>
 </html>
