@@ -1,30 +1,28 @@
 <!DOCTYPE html>
-{% load static %}
-{% load django_jam_template_tags %}
+{% load static %} {% load django_jam_template_tags %}
 
 <html>
   <head lang="en">
     <meta charset="UTF-8" />
-    <title>
-      DJ Jam -
-      {% block title_block %}
-        How to Jam with Django!
-      {% endblock %}
-    </title>
-    <link rel="stylesheet" href="{% static 'CSS/base_Css.css' %}" />
+    <title>DjangoJam - {% block title_block %} Jam with Django! {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
   </head>
   <body>
-    <div>
+    <main>
       {% block body_block %}
       {% endblock %}
-    </div>
-     <hr />
+    </main>
+
+    <hr />
+
     <div>
       {% block sidebar_block %}
-        {% get_tune_list %}
+        {% get_tune_list %} 
       {% endblock %}
     </div>
-      <hr />
+
+    <hr />
+
     <div>
       <ul>
         {% if user.is_authenticated %}
@@ -35,7 +33,7 @@
         <li><a href="{% url 'django_jam_app:login' %}">Login</a></li>
         {% endif %}
         <li><a href="{% url 'django_jam_app:about' %}">About</a></li>
-          <li><a href="{% url 'django_jam_app:explore' %}">Explore</a></li>
+        <li><a href="{% url 'django_jam_app:explore' %}">Explore</a></li>
         <li><a href="{% url 'django_jam_app:index' %}">Index</a></li>
       </ul>
     </div>
