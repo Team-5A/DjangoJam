@@ -18,14 +18,20 @@
 
       {% comment %} links {% endcomment %}
       <ul>
-        <li><a href="{% url 'django_jam_app:add_tune' %}">create</a></li>
-        <li><a href="{% url 'django_jam_app:explore' %}">explore</a></li>
-        <li><a href="{% url 'django_jam_app:about' %}">about</a></li>
+        {% url 'django_jam_app:add_tune' as url %}
+        <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">create</a></li>
+
+        {% url 'django_jam_app:explore' as url %}
+        <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">explore</a></li>
+
+        {% url 'django_jam_app:about' as url %}
+        <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">about</a></li>
 
         {% if user.is_authenticated %}
         <li><a href="{% url 'django_jam_app:logout' %}">logout</a></li>
         {% else %}
-        <li><a href="{% url 'django_jam_app:login' %}">login</a></li>
+        {% url 'django_jam_app:login' as url %}
+        <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">login</a></li>
         {% endif %}
       </ul>
     </nav>
