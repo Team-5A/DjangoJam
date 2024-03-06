@@ -2,37 +2,33 @@
 {% load static %}
 
 {% block title_block %}
-    Home Page
+    Home
+{% endblock %}
+
+{% block head_block %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
 {% endblock %}
 
 {% block body_block %}
-    <h1>Jam says...</h1>
-    <div>
+    <main>
+        <div class="hero">
+            {% comment %} hero title {% endcomment %}
+            <div class="hero-text">
+                <h1>Jam your heart out with django!</h1>
+                <p>Create and share all your fabulous midi creations on the world’s leading online piano.</p>
+            </div>
 
-        {% if user.is_authenticated %}
-            howdy {{ user.username }}!
-        {% else %}
-            hey there artist!
-        {% endif %}
+            {% comment %} call to action {% endcomment %}
+            <div class="hero-cta">
+                <form action="">
+                    <input size="20" type="text" placeholder="Username...">
+                    <button class="button" type="submit">Sign Up</button>
+                </form>
 
+                <p>or</p>
 
-        <br />
-        <strong>{{ boldmessage }}</strong>
-        <br />
-
-    </div>
-
-    <!--<div>
-        {% if tunes %}
-        <strong>Most Liked Tunes</strong>
-         <ul>
-            {% for tune in tunes %}
-                <li>{{ tune.name }}</li>
-            {% endfor %}
-        </ul>
-        {% else %}
-            <strong>There are no tunes present.</strong>
-        {% endif %}
-    </div>-->
-
+                <a class="button button--secondary" href="{% url 'django_jam_app:add_tune' %}">Start Jamming</a>
+            </div>
+        </div>
+    </main>
 {% endblock %}
