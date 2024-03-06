@@ -26,7 +26,6 @@ def populate_user_profiles():
         user = User.objects.create_user(data['username'], data['email'], data['password'])
         profile = UserProfile.objects.create(
             user=user,
-            website=f'http://www.{data["username"]}.com',
             total_likes=random.randint(0, 20),
             self_likes=random.randint(0, 20),
             number_of_tunes_played=random.randint(0, 50),
@@ -53,11 +52,12 @@ def populate_tunes():
         artist_user = User.objects.get(username=data['artist_username'])
         tune = Tune.objects.create(
             name=data['name'],
-            artist=artist_user,
+            creator=artist_user,
             views=data['views'],
             likes=data['likes'],
             notes=data['notes'],
-            slug=slugify(data['name'])
+            slug=slugify(data['name']),
+            beats_per_minute=random.randint(60, 200)
         )
         tune.save()
         print(f"Created Tune: {data['name']}")
