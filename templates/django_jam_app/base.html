@@ -1,43 +1,80 @@
 <!DOCTYPE html>
-{% load static %}
-{% load django_jam_template_tags %}
+{% load static %} {% load django_jam_template_tags %}
 
 <html>
   <head lang="en">
     <meta charset="UTF-8" />
-    <title>
-      DJ Jam -
-      {% block title_block %}
-        How to Jam with Django!
-      {% endblock %}
-    </title>
-    <link rel="stylesheet" href="{% static 'CSS/base_Css.css' %}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>DjangoJam - {% block title_block %} Jam with Django! {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/components.css' %}" />
+
+    {% comment %} link 'Inter' google font {% endcomment %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+    <script src="{% static 'js/navbar.js' %}" defer></script>
+
+    {% block head_block %}
+    {% endblock %}
   </head>
   <body>
-    <div>
+    <nav class="navbar">
+      <a class="logo" href="{% url 'django_jam_app:index' %}">DjangoJam</a>
+
+      {% comment %} links {% endcomment %}
+      <ul>
+        {% url 'django_jam_app:add_tune' as url %}
+        <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">create</a></li>
+
+        {% url 'django_jam_app:explore' as url %}
+        <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">explore</a></li>
+
+        {% url 'django_jam_app:about' as url %}
+        <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">about</a></li>
+
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'django_jam_app:logout' %}">logout</a></li>
+        {% else %}
+        {% url 'django_jam_app:login' as url %}
+        <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">login</a></li>
+        {% endif %}
+      </ul>
+
+      <div class="mobile-menu">
+        <button id="mobile-menu-open">
+          <div></div>
+        </button>
+
+        <div id="mobile-menu-links" class="closed">
+          <button id="mobile-menu-close"></button>
+
+          <ul>
+            {% url 'django_jam_app:add_tune' as url %}
+            <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">create</a></li>
+
+            {% url 'django_jam_app:explore' as url %}
+            <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">explore</a></li>
+
+            {% url 'django_jam_app:about' as url %}
+            <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">about</a></li>
+
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'django_jam_app:logout' %}">logout</a></li>
+            {% else %}
+            {% url 'django_jam_app:login' as url %}
+            <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">login</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="content-container">
       {% block body_block %}
       {% endblock %}
-    </div>
-     <hr />
-    <div>
-      {% block sidebar_block %}
-        {% get_tune_list %}
-      {% endblock %}
-    </div>
-      <hr />
-    <div>
-      <ul>
-        {% if user.is_authenticated %}
-        <li><a href="{% url 'django_jam_app:logout' %}">Logout</a></li>
-        <li><a href="{% url 'django_jam_app:add_tune' %}">Add a New Tune</a></li>
-        {% else %}
-        <li><a href="{% url 'django_jam_app:register' %}">Sign Up</a></li>
-        <li><a href="{% url 'django_jam_app:login' %}">Login</a></li>
-        {% endif %}
-        <li><a href="{% url 'django_jam_app:about' %}">About</a></li>
-          <li><a href="{% url 'django_jam_app:explore' %}">Explore</a></li>
-        <li><a href="{% url 'django_jam_app:index' %}">Index</a></li>
-      </ul>
     </div>
   </body>
 
