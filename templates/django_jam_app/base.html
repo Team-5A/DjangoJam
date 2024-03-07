@@ -15,6 +15,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 
+    <script src="{% static 'js/navbar.js' %}" defer></script>
+
     {% block head_block %}
     {% endblock %}
   </head>
@@ -40,6 +42,34 @@
         <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">login</a></li>
         {% endif %}
       </ul>
+
+      <div class="mobile-menu">
+        <button id="mobile-menu-open">
+          <div></div>
+        </button>
+
+        <div id="mobile-menu-links" class="closed">
+          <button id="mobile-menu-close"></button>
+
+          <ul>
+            {% url 'django_jam_app:add_tune' as url %}
+            <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">create</a></li>
+
+            {% url 'django_jam_app:explore' as url %}
+            <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">explore</a></li>
+
+            {% url 'django_jam_app:about' as url %}
+            <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">about</a></li>
+
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'django_jam_app:logout' %}">logout</a></li>
+            {% else %}
+            {% url 'django_jam_app:login' as url %}
+            <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">login</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
     </nav>
 
     <div class="content-container">

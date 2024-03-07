@@ -62,7 +62,7 @@ body {
   list-style: none;
   display: flex;
   flex-direction: row;
-  gap: 3.5rem;
+  gap: clamp(2rem, 5vw, 3.5rem);
 }
 
 .navbar ul li a {
@@ -78,6 +78,128 @@ body {
 .navbar ul li a.active {
   color: var(--primary-color);
   opacity: 1;
+}
+
+.navbar .mobile-menu {
+  display: none;
+}
+
+.navbar .mobile-menu ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.navbar #mobile-menu-open,
+.navbar #mobile-menu-close {
+  width: 2rem;
+  height: 2rem;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+}
+
+.navbar #mobile-menu-open:hover,
+.navbar #mobile-menu-close:hover {
+  opacity: 1;
+}
+
+.navbar #mobile-menu-open div {
+  display: flex;
+  border: none;
+  position: relative !important;
+}
+
+.navbar #mobile-menu-open div,
+.navbar #mobile-menu-open div::before,
+.navbar #mobile-menu-open div::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: var(--text-color);
+  border-radius: 0.4rem;
+  width: 2rem;
+  height: 0.35rem;
+}
+
+.navbar #mobile-menu-open div::before {
+  transform: translateY(-0.6rem);
+}
+
+.navbar #mobile-menu-open div::after {
+  transform: translateY(0.6rem);
+}
+
+.navbar #mobile-menu-close {
+  width: 2rem;
+  height: 2rem;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  position: absolute;
+  top: var(--side-padding);
+  right: var(--side-padding);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar #mobile-menu-close::before,
+.navbar #mobile-menu-close::after {
+  content: "";
+  display: block;
+  position: absolute;
+  background: var(--text-color);
+  border-radius: 0.4rem;
+  width: 2rem;
+  height: 0.35rem;
+}
+
+.navbar #mobile-menu-close::before {
+  transform: rotate(45deg);
+}
+
+.navbar #mobile-menu-close::after {
+  transform: rotate(-45deg);
+}
+
+#mobile-menu-links {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-color);
+  z-index: 100;
+  padding: var(--side-padding);
+}
+
+#mobile-menu-links.closed {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    padding: var(--side-padding) var(--side-padding);
+  }
+
+  .navbar ul {
+    display: none;
+  }
+
+  .navbar .mobile-menu {
+    display: block;
+  }
 }
 
 .content-container {
