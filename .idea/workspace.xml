@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d144bbc4-f6ac-477f-86b1-c4cf7c52ced0" name="Changes" comment="Fix - just added explore to base.html">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django_jam_app/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_jam_app/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django_jam_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_jam_app/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/django_jam_app/tunes.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/django_jam_app/tunes.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django_jam_app/templatetags/django_jam_template_tags.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_jam_app/templatetags/django_jam_template_tags.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,8 +73,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "django.template.preview.state": "SHOW_EDITOR",
-    "git-widget-placeholder": "Profile__Template__And__Profile__Search__Fraser",
-    "last_opened_file_path": "C:/Users/user/Documents/CompSci/WAD2/Group_5A_Project_Local/Django_Jam/Django_Jam_Base/DjangoJam",
+    "git-widget-placeholder": "Fix-Template-tags",
+    "last_opened_file_path": "C:/Users/user/Documents/CompSci/WAD2/Group_5A_Project_Local/Django_Jam/Django_Jam/DjangoJam",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -86,7 +84,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Python.python manage.py runserver">
+  <component name="RunManager" selected="Django Server.DjangoJam">
     <configuration name="populate_jam" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="DjangoJam" />
       <option name="ENV_FILES" value="" />
@@ -271,6 +269,7 @@
       <workItem from="1709338709914" duration="893000" />
       <workItem from="1709550412030" duration="652000" />
       <workItem from="1709576714255" duration="374000" />
+      <workItem from="1709821784354" duration="987000" />
     </task>
     <task id="LOCAL-00001" summary="Fraser L First Commit for Base Django Jam Project.">
       <option name="closed" value="true" />
