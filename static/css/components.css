@@ -1,0 +1,39 @@
+.button {
+  background-color: var(--primary-color-bright);
+  color: var(--text-color);
+  padding: 1rem;
+  font-size: 1rem;
+  border-radius: 0.4rem;
+  transition: background-color 0.3s ease;
+  border: none;
+  text-decoration: none;
+  min-height: 2.75rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-weight: var(--bold);
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--primary-color);
+}
+
+.button:focus {
+  outline: none;
+  background-color: var(--primary-color);
+}
+
+.button--secondary {
+  background-color: var(--accent-color);
+}
+
+.button--secondary:hover {
+  background-color: var(--accent-color-bright);
+}
+
+.button--secondary:focus {
+  outline: none;
+  background-color: var(--accent-color-bright);
+}

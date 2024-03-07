@@ -1,0 +1,76 @@
+main {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 4rem;
+  padding: 12rem var(--side-padding);
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.hero-text h1 {
+  font-size: 2.5rem;
+  font-weight: var(--bold);
+}
+
+.hero-text p {
+  font-size: 1rem;
+  font-weight: var(--regular);
+  opacity: 0.4;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.hero-cta p {
+  font-size: 0.85rem;
+  opacity: 0.4;
+}
+
+.hero-cta form {
+  display: flex;
+  gap: 1rem;
+  background-color: var(--text-color);
+  color: var(--bg-color);
+  border-radius: 0.4rem;
+  padding: 0.3rem;
+}
+
+.hero-cta form input {
+  background-color: transparent;
+  border: none;
+  color: var(--bg-color);
+  font-size: 0.85rem;
+  padding: 0.8rem 0.5rem;
+  max-width: 100%;
+}
+
+.hero-cta form input:focus {
+  outline: none;
+}
+
+.hero-cta form button {
+  width: 6.5rem;
+}
+
+/* mobile */
+@media screen and (max-width: 768px) {
+  .hero-cta {
+    flex-direction: column;
+    gap: 1.5rem;
+    justify-content: center;
+  }
+}

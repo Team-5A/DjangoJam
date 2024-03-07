@@ -16,9 +16,9 @@ def is_current_user(user_profile, current_user):
 
 @register.filter(name='count_tunes')                # Count tunes by user
 def count_tunes(user):
-    return Tune.objects.filter(artist=user).count()
+    return Tune.objects.filter(creator=user).count()
 
 
 @register.inclusion_tag('django_jam_app/tunes.html')    # Get tunes by user
 def get_tunes_by_user(user):
-    return {'Tunes': Tune.objects.filter(artist=user)}
+    return {'Tunes': Tune.objects.filter(creator=user)}
