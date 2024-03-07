@@ -37,3 +37,10 @@
   outline: none;
   background-color: var(--accent-color-bright);
 }
+
+.link {
+  color: var(--primary-color);
+  font-weight: var(--semi-bold);
+  text-decoration: underline;
+  font-size: 1rem;
+}
