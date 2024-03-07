@@ -8,23 +8,60 @@ main {
 
 .content {
   display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
+  flex-direction: row;
+  gap: 4rem;
+  justify-content: space-between;
 }
 
-.hero-text {
+.content-text {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  width: 45%;
 }
 
-.content h1 {
+.content-text h1 {
   font-size: 2.5rem;
   font-weight: var(--bold);
 }
 
-.content p {
+.content-text p {
   font-size: 1rem;
   font-weight: var(--regular);
   opacity: 0.4;
+}
+
+.content-image {
+  max-width: 45%;
+  display: flex;
+  justify-content: center;
+}
+
+.content-image img {
+  margin-top: 3rem;
+}
+
+.content-links {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .content {
+    flex-direction: column-reverse;
+    gap: 4rem;
+  }
+
+  .content-text {
+    width: 100%;
+  }
+
+  .content-image {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin: auto;
+  }
 }
