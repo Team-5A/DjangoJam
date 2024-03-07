@@ -28,7 +28,7 @@
     <h2>Tunes</h2>
     <ul>
         {% for tune in tunes %}
-            <li>{{ tune.name }}</li>
+            {% include 'django_jam_app/tune_player.html' with tune=tune %}
         {% empty %}
             <li>No tunes found</li>
         {% endfor %}
