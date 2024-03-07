@@ -2,22 +2,18 @@
 {% load static %}
 
 {% block title_block %}
-    About Page
+    About
+{% endblock %}
+
+{% block head_block %}
+    <link href="{% static 'css/about.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block body_block %}
-    <h1>Jam says...</h1>
-    <div>
-        here is the about page!<br />
-        <p>User Visits: {{ visits }}</p>
-
-<!--        <img src="{{ MEDIA_URL }}Watkins.png" alt="Picture of Watkins a cat."/><br />-->
-
-    </div>
-    <div>
-<!--        <img src="{% static 'images/CRango.png' %}" alt="Picture of Rango" />-->
-    </div>
-    <div>
-        <h3> This demo has been put together by F W Levack. </h3>
-    </div>
+    <main>
+        <div class="content">
+            <h1>Jam your heart out with django!</h1>
+            <p>Create and share all your fabulous midi creations on the world’s leading online piano.</p>
+        </div>
+    </main>
 {% endblock %}
