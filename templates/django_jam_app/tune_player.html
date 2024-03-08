@@ -11,18 +11,18 @@
         {% csrf_token %}
         <!-- Other form fields -->
 
-        <strong id="like_count">{{ tune.likes }}</strong> likes
+        <span id="like_count_{{ tune.ID }}"><strong>{{ tune.likes }}</strong></span> likes
         {% if user.is_authenticated %}
-        <button id="like_btn"
+        <button
           data-tuneID="{{ tune.ID }}"
-          class="btn btn-primary btn-sm" type="button">
+          class="like_btn" type="button">
           <span data-feather="thumbs-up"></span>
           &#128077;
         </button>
             
-        <button id="dislike_btn"
+        <button
           data-tuneID="{{ tune.ID }}"
-          class="btn btn-primary btn-sm" type="button">
+          class="dislike_btn" type="button">
           <span data-feather="thumbs-down"></span>&#128078;</button>
             
         {% endif %}
