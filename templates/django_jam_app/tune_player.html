@@ -4,4 +4,16 @@
   </button>
   <strong class="name">{{ tune.name }}</strong>
   <span class="notes" style="opacity: 0.5">{{ tune.notes }}</span>
+  <div>
+    <strong id="like_count">{{ tune.likes }}</strong> likes
+    {% if user.is_authenticated %}
+    <button id="like_btn"
+      data-tuneid="{{ tune.id }}"
+      class="btn btn-primary btn-sm" type="button">
+      <span data-feather="thumbs-up"></span>
+      Like Category
+    </button>
+    {% endif %}
+  </div>
+  <button onclick="">Dislike</button>
 </li>

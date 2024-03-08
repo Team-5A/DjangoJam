@@ -7,6 +7,9 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+
+from django.http import JsonResponse
+
 from datetime import datetime
 
 
@@ -177,3 +180,15 @@ def visitor_cookie_handler(request):
         request.session['last_visit'] = last_visit_cookie
 
     request.session['visits'] = visits
+
+def get(self, request):
+    tune_id = request.GET['tune_id']
+    try:
+        tune = Tune.objects.get(id=int(tune_id))
+    except Tune.DoesNotExist:
+        return HttpResponse(-1)
+    except ValueError:
+        return HttpResponse(-1)
+    tune.likes = tune.likes + 1
+    tune.save()
+    return HttpResponse(tune.likes)

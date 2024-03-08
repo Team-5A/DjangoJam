@@ -84,3 +84,16 @@ function playNote(note, oscillator) {
 function stopPlayback(oscillator, gainNode) {
   oscillator.frequency.setValueAtTime(0, audioContext.currentTime);
 }
+
+$(document).ready(function() {
+    $('#like_btn').click(function() {
+        var catecategoryIdVar;
+        catecategoryIdVar = $(this).attr('data-tuneid');
+        $.get('/rango/like_tune/',
+            {'tune_id': catecategoryIdVar},
+            function(data) {
+                $('#like_count').html(data);
+                $('#like_btn').hide();
+            })
+    });
+});
