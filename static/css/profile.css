@@ -10,7 +10,7 @@ main {
 .profile-container {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.75rem;
   width: 100%;
   max-width: 54rem;
 }
@@ -20,7 +20,7 @@ main {
 
   display: flex;
   flex-direction: row;
-  gap: 2rem;
+  gap: 1.75rem;
   width: 100%;
   height: var(--height);
 }
@@ -63,6 +63,18 @@ main {
   margin-bottom: 1rem;
 }
 
+.username-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.username-container button {
+  margin-left: auto;
+  transform-origin: top right;
+  transform: scale(0.8);
+  height: 4rem;
+}
+
 .profile-stats {
   display: flex;
   flex-direction: row;
@@ -93,6 +105,34 @@ main {
   height: var(--size);
   user-select: none;
   -webkit-user-drag: none;
+}
+
+.profile-tune-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.tune-list-title {
+  padding: 1.25rem;
+  background-color: var(--bg-color-light);
+  border-radius: 0.4rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.tune-list-title h2 {
+  font-size: 1.5rem;
+  font-weight: var(--bold);
+}
+
+.tune-no-songs {
+  font-size: 0.75rem;
+  font-weight: var(--semibold);
+  opacity: 0.4;
+  margin-left: auto;
 }
 
 @media screen and (max-width: 768px) {

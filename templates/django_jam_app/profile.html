@@ -12,16 +12,12 @@
 
 {% block head_block %}
   <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+  <script src="{% static 'js/profile.js' %}" defer></script>
 {% endblock %}
 
 {% block body_block %}
   <main>
     <div class="profile-container">
-      {% comment %} {% if user_profile|is_current_user:request.user %}
-          <h1>Your Profile</h1>
-      {% else %}
-          <h1>{{ user_profile.user.username }}'s Profile</h1>
-      {% endif %} {% endcomment %}
 
       {% comment %} top section {% endcomment %}
       <section class="profile-top">
@@ -34,9 +30,15 @@
         </div>
 
         <div class="profile-info">
-          <div>
-            <p class="tag">username</p>
-            <h1 class="username">{{ user_profile.user.username }}</h1>
+          <div class="username-container">
+            <div>
+              <p class="tag">username</p>
+              <h1 class="username">{{ user_profile.user.username }}</h1>
+            </div>
+
+            {% if user_profile|is_current_user:request.user %}
+              <button id="delete-account-button" class="button button--secondary">delete account</button>
+            {% endif %}
           </div>
 
           <div>
@@ -68,12 +70,21 @@
 
       {% comment %} tunes list {% endcomment %}
       <section class="profile-tune-list">
+        {% has_tunes user_profile.user as has_tunes %}
+
         <div class="tune-list-title">
-          <h2>{{ user_profile.user.username }}'s Songs</h2>
+          <h2>{{ user_profile.user.username }}'s songs</h2>
+
+          {% if not has_tunes %}
+            <div class="tune-no-songs">no songs available</p>
+          {% endif %}
         </div>
 
         <div class="tune-list">
-         {% get_tunes_by_user user_profile.user %}
+          {% if has_tunes %}
+            {% get_tunes_by_user user_profile.user %}
+          {% endif %}
+        </div>
       </section>
 
 
