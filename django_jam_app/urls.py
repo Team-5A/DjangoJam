@@ -7,10 +7,10 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     # path('tune/<slug:tune_name_slug>/', views.show_tune, name='show_tune'),
     path('add_tune/', views.add_tune, name='add_tune'),
-    path('append_tune_string', views.append_tune_string, name='append_tune_string'),
     path('register/', views.register, name='register'),
     path('login/', views.user_login, name='login'),
     path('logout/', views.user_logout, name='logout'),
     path('profile/<slug:slug>/', views.profile, name='profile'),
     path('explore/', views.explore, name='explore'),
+    path('save/', views.save_tune, name='save_tune'),
 ]

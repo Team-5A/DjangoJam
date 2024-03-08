@@ -7,107 +7,91 @@
 
 {% block body_block %}
     <h1>Add a TUNE</h1>
-    <div>
-        <form id="tune_form" method="post" action="/django_jam_app/add_tune/">
-            {% csrf_token %}
-            {% for hidden in form.hidden_fields %}
-                {{ hidden }}
-            {% endfor %}
-            {% for field in form.visible_fields %}
-                {{ field.errors }}
-                {{ field.help_text }}
-            {{ field }}
-            {% endfor %}
-            <ul>
-        
-                <button onclick="combinedFunction(C3)"> C3 </button>
-            
-                <button onclick="combinedFunction(C#3/Db3)"> C#3/Db3 </button>
-            
-                <button onclick="combinedFunction(D3)"> D3 </button>
-            
-                <button onclick="combinedFunction(D#3/Eb3)"> D#3/Eb3 </button>
-            
-                <button onclick="combinedFunction(E3)"> E3 </button>
+    <p>Click the notes to add to the tune</p>
+    <form id="tune-form" method="POST" action="{% url 'django_jam_app:save_tune' %}">
+        {% csrf_token %}
+    <div id="input-display"></div>
+    <div class="keyboard">
+        <button type="button" onclick="appendToDisplay('C3,')"> C3 </button>
     
-                <button onclick="combinedFunction(F3)"> F3 </button>
+        <button type="button" onclick="appendToDisplay('C#3,')"> C#3 </button>
     
-                <button onclick="combinedFunction(F#3/Gb3)"> F#3/Gb3 </button>
+        <button type="button" onclick="appendToDisplay('D3,')"> D3 </button>
     
-                <button onclick="combinedFunction(G3)"> G3 </button>
+        <button type="button" onclick="appendToDisplay('D#3,')"> D#3 </button>
     
-                <button onclick="combinedFunction(G#3/Ab3)"> G#3/Ab3 </button>
-    
-                <button onclick="combinedFunction(A3)"> A3 </button>
-    
-                <button onclick="combinedFunction(A#3/Bb3)"> A#3/Bb3 </button>
-    
-                <button onclick="combinedFunction(B3)"> B3 </button>
-    
-                <button onclick="combinedFunction(C4)"> C4 </button>
-    
-                <button onclick="combinedFunction(C#4/Db4)"> C#4/Db4 </button>
-    
-                <button onclick="combinedFunction(D4)"> D4 </button>
-    
-                <button onclick="combinedFunction(D#4/Eb4)"> D#4/Eb4 </button>
-    
-                <button onclick="combinedFunction(E4)"> E4 </button>
-    
-                <button onclick="combinedFunction(F4)"> F4 </button>
-    
-                <button onclick="combinedFunction(F#4/Gb4)"> F#4/Gb4 </button>
-    
-                <button onclick="combinedFunction(G4)"> G4 </button>
-    
-                <button onclick="combinedFunction(G#4/Ab4)"> G#4/Ab4 </button>
-    
-                <button onclick="combinedFunction(A4)"> A4 </button>
-    
-                <button onclick="combinedFunction(A#4/Bb4)"> A#4/Bb4 </button>
-    
-                <button onclick="combinedFunction(B4)"> B4 </button>
-    
-                <button onclick="combinedFunction(C5)"> C5 </button>
-    
-                <button onclick="combinedFunction(Rest)"> Rest </button>
-    
-            </ul>
-        <input type="submit" name="submit" value="Create Tune" />
-        </form>
+        <button type="button" onclick="appendToDisplay('E3,')"> E3 </button>
+
+        <button type="button" onclick="appendToDisplay('F3,')"> F3 </button>
+
+        <button type="button" onclick="appendToDisplay('F#3,')"> F#3 </button>
+
+        <button type="button" onclick="appendToDisplay('G3,')"> G3 </button>
+
+        <button type="button" onclick="appendToDisplay('G#3,')"> G#3 </button>
+
+        <button type="button" onclick="appendToDisplay('A3,')"> A3 </button>
+
+        <button type="button" onclick="appendToDisplay('A#3,')"> A#3 </button>
+
+        <button type="button" onclick="appendToDisplay('B3,')"> B3 </button>
+
+        <button type="button" onclick="appendToDisplay('C4,')"> C4 </button>
+
+        <button type="button" onclick="appendToDisplay('C#4,')"> C#4 </button>
+
+        <button type="button" onclick="appendToDisplay('D4,')"> D4 </button>
+
+        <button type="button" onclick="appendToDisplay('D#4,')"> D#4 </button>
+
+        <button type="button" onclick="appendToDisplay('E4,')"> E4 </button>
+
+        <button type="button" onclick="appendToDisplay('F4,')"> F4 </button>
+
+        <button type="button" onclick="appendToDisplay('F#4,')"> F#4 </button>
+
+        <button type="button" onclick="appendToDisplay('G4,')"> G4 </button>
+
+        <button type="button" onclick="appendToDisplay('G#4,')"> G#4 </button>
+
+        <button type="button" onclick="appendToDisplay('A4,')"> A4 </button>
+
+        <button type="button" onclick="appendToDisplay('A#4,')"> A#4 </button>
+
+        <button type="button" onclick="appendToDisplay('B4,')"> B4 </button>
+
+        <button type="button" onclick="appendToDisplay('C5,')"> C5 </button>
+
+        <button type="button" onclick="appendToDisplay(',')"> Rest </button>
+
     </div>
-
-    {% comment %} // I want to make it display what notes you have entered here {% endcomment %}
-    <div id="editableTextField" contenteditable="false">Initial Text</div>
+        <br>
+    <div>
+        <label for="name-input">Name:</label>
+        <input type="text" id="name-input" name="name_input">
+        <br>
+        <input type="hidden" id="tune-input" name="tune_input">
+        <button type="submit">Save Submit</button>
+    </div>
+    </form>
     
-    <!-- Button to change the text -->
-    {% comment %} should not be needed once the button clicks works {% endcomment %}
-    <button onclick="changeText()">Change Text</button>
-
     <script>
-        function append_tune_string(key) {
-            // Send an AJAX request to Django backend
-            // calls append_tune_string function
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", "{% url 'append_tune_string' %}?parameter=" + key, true);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    // Handle the response from the server if needed
-                    console.log(xhr.responseText);
-                }
-            };
-            xhr.send();
-        }
-        
-        function changeText() {
-            var textField = document.getElementById("editableTextField");
-            textField.textContent = "New Text";
+        let text = '';
+
+        function appendToDisplay(note) {
+            text += note;
+            document.getElementById('input-display').innerText = text;
         }
 
-        function combinedFunction(key) {
-            // executes both function
-            append_tune_string(key)
-            changeText()
+        function clearDisplay() {
+            text = '';
+            document.getElementById('input-display').innerText = text;
         }
+
+        document.getElementById('tune-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('tune-input').value = text;
+            this.submit();
+        });
     </script>
 {% endblock %}
