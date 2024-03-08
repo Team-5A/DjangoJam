@@ -196,3 +196,17 @@ def like_tune(request, tune_id):
         return JsonResponse({'likes': tune.likes})
     else:
         return JsonResponse({}, status=400)
+
+
+def dislike_tune(request, tune_id):
+    if request.method == 'POST' and request.user.is_authenticated:
+        tune = get_object_or_404(Tune, ID=tune_id)
+        user = request.user
+        tune.creator.userprofile.total_likes -= 1
+        tune.likes -= 1
+        tune.save()
+        user.userprofile.save()
+        tune.creator.userprofile.save()
+        return JsonResponse({'likes': tune.likes})
+    else:
+        return JsonResponse({}, status=400)
