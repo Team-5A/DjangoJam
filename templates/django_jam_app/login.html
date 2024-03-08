@@ -26,8 +26,14 @@
         <label class="label" for="password">password</label>
         <input class="input input--password" type="password" name="password" placeholder="mypassword123" size="32" />
 
-        <button id="show-password-button" type="button" for="password">show password</button>
+        <button class="show-password-button" tabindex="-1" type="button" for="password">show password</button>
       </div>
+
+      {% if has_error %}
+        <div class="form-error">
+          {{ error }}
+        </div>
+      {% endif %}
 
       <button class="button submit-button" type="submit">login</button>
     </form>

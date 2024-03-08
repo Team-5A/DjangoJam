@@ -68,6 +68,8 @@ def add_tune(request):
 def register(request):
     registered = False
 
+    errors = []
+
     if request.method == 'POST':
 
         user_form = UserForm(request.POST)
@@ -88,17 +90,25 @@ def register(request):
 
             profile.save()
 
-            registered = True
+            login(request, user)
+            return redirect(reverse('django_jam_app:profile', args=[user.username]))
         else:
-            print(user_form.errors, profile_form.errors)
+            errors.append(user_form.errors)
+            errors.append(profile_form.errors)
     else:
 
         user_form = UserForm()
         profile_form = UserProfileForm()
-
+    
+    error_key = ""
+    error = ""
+    if len(errors) > 0:
+        error_key = list(errors[0].keys())[0]
+        error = f"{'error' if error_key.startswith('__') else error_key}: {errors[0][error_key][0].lower()}"
+    
     return render(request, 'django_jam_app/register.html',
                   context={'user_form': user_form, 'profile_form': profile_form,
-                           'registered': registered})
+                           'registered': registered, 'has_error': len(errors) > 0, 'error': error  })
 
 
 def user_login(request):
@@ -114,18 +124,26 @@ def user_login(request):
             if user.is_active:
 
                 login(request, user)
-                return redirect(reverse('django_jam_app:index'))
+                return redirect(reverse('django_jam_app:profile', args=[user.username]))
             else:
 
-                return HttpResponse("Your Rango account is disabled.")
+                return render(request, 'django_jam_app/login.html', context={
+                    'has_error': True,
+                    'error': 'Your DjangoJam account is disabled.',
+                }) 
         else:
-
-            print(f"Invalid login details: {username}, {password}")
-            return HttpResponse("Invalid login details supplied.")
+            return render(request, 'django_jam_app/login.html', context={
+                'has_error': True,
+                'error': 'Invalid login details.',
+            }) 
 
     else:
 
-        return render(request, 'django_jam_app/login.html')
+
+        return render(request, 'django_jam_app/login.html', context={
+            'has_error': False,
+            'error': '',
+        })
 
 
 def profile(request, slug):

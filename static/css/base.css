@@ -11,6 +11,8 @@
   --primary-color-bright: #27ae60;
   --accent-color: #2d9cdb;
   --accent-color-bright: #30aef7;
+  --error-color: #f13434;
+  --error-color-light: #f226265b;
 
   --side-padding: clamp(2rem, 12vw, 17rem);
 
@@ -35,7 +37,7 @@
 }
 
 body {
-  font-family: Inter, "sans-serif";
+  font-family: Inter, sans-serif;
   width: 100%;
   min-height: 100vh;
   background-color: var(--bg-color);
@@ -49,6 +51,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 2.5rem var(--side-padding);
+  z-index: 10;
 }
 
 .navbar .logo {
