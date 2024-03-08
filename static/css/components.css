@@ -128,3 +128,83 @@
   border-radius: 0.4rem;
   padding: 1.25rem 1rem;
 }
+
+.tune {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 5rem;
+  background-color: var(--bg-color-light);
+  padding: 1.25rem;
+  border-radius: 0.4rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tune-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.tune-name {
+  font-size: 1rem;
+  font-weight: var(--bold);
+}
+
+.tune-author {
+  font-size: 0.75rem;
+  font-weight: var(--medium);
+  opacity: 0.6;
+}
+
+.tune-controls {
+  display: flex;
+  flex-direction: row;
+  gap: 1.25rem;
+}
+
+.tune-likes {
+  display: flex;
+  flex-direction: row;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.tune-likes button {
+  --size: 1.5rem;
+  width: var(--size);
+  height: var(--size);
+  background: none;
+  border: none;
+  outline: none !important;
+  cursor: pointer;
+}
+
+.tune-likes button img {
+  width: 100%;
+  height: 100%;
+}
+
+.tune-likes p {
+  font-size: 0.75rem;
+  opacity: 0.6;
+  font-weight: var(--medium);
+}
+
+.tune-delete {
+  --size: 2.15rem;
+  width: var(--size);
+  height: var(--size);
+  background-color: var(--error-color);
+  padding: 0.4rem;
+  border: none;
+  outline: none !important;
+  border-radius: 0.4rem;
+  cursor: pointer;
+}
+
+.tune-delete img {
+  width: 100%;
+  height: 100%;
+}

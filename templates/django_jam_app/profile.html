@@ -82,7 +82,11 @@
 
         <div class="tune-list">
           {% if has_tunes %}
-            {% get_tunes_by_user user_profile.user %}
+            {% get_tunes_by_user user_profile.user as tunes %}
+
+            {% for tune in tunes %}
+              {% include 'django_jam_app/components/tune.html' with tune=tune %}
+            {% endfor %}
           {% endif %}
         </div>
       </section>

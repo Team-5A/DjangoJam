@@ -1,0 +1,23 @@
+{% load static %}
+
+<div class="tune">
+    <div class="tune-info">
+        <p class="tune-name">{{ tune.name }}</p>
+        <p class="tune-author">by {{ tune.creator.username }}</p>
+    </div>
+
+    {% include "django_jam_app/components/play-bar.html" with tune=tune %}
+
+    <div class="tune-controls">
+        <div class="tune-likes">
+            <p>{{ tune.likes }} likes</p>
+            <button>
+                <img src="{% static 'images/icons/heart-outline.svg' %}" alt="Like Song">
+            </button>
+        </div>
+
+        <button class="tune-delete">
+            <img src="{% static 'images/icons/trash.svg' %}" alt="Delete Song">
+        </button>
+    </div>
+</div>
