@@ -110,3 +110,10 @@
 .auth-form .submit-button {
   margin-top: 0.5rem;
 }
+
+.link {
+  color: var(--primary-color);
+  font-weight: var(--semi-bold);
+  text-decoration: underline;
+  font-size: 1rem;
+}
