@@ -64,7 +64,7 @@
   color: var(--accent-color);
 }
 
-#show-password-button {
+.show-password-button {
   background: none;
   border: none;
   outline: none;
@@ -76,7 +76,7 @@
   margin-left: auto;
 }
 
-#show-password-button:hover {
+.show-password-button:hover {
   color: var(--primary-color);
 }
 
@@ -116,4 +116,15 @@
   font-weight: var(--semi-bold);
   text-decoration: underline;
   font-size: 1rem;
+}
+
+.form-error {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: var(--error-color);
+  background-color: var(--error-color-light);
+  border: 0.15rem solid var(--error-color);
+  border-radius: 0.4rem;
+  padding: 1.25rem 1rem;
 }
