@@ -149,7 +149,8 @@ def explore(request):
         user_profiles = UserProfile.objects.filter(user__username__icontains=query)
         tunes = Tune.objects.filter(name__icontains=query)
 
-    return render(request, 'django_jam_app/explore.html', {'form': form, 'user_profiles': user_profiles, 'tunes': tunes})
+    return render(request, 'django_jam_app/explore.html',
+                  {'form': form, 'user_profiles': user_profiles, 'tunes': tunes})
 
 
 @login_required
@@ -181,14 +182,12 @@ def visitor_cookie_handler(request):
 
     request.session['visits'] = visits
 
-def get(self, request):
-    tune_id = request.GET['tune_id']
-    try:
-        tune = Tune.objects.get(id=int(tune_id))
-    except Tune.DoesNotExist:
-        return HttpResponse(-1)
-    except ValueError:
-        return HttpResponse(-1)
-    tune.likes = tune.likes + 1
-    tune.save()
-    return HttpResponse(tune.likes)
+
+def like_tune(request, tune_id):
+    if request.method == 'POST' and request.user.is_authenticated:
+        tune = get_object_or_404(Tune, ID=tune_id)
+        tune.likes += 1
+        tune.save()
+        return JsonResponse({'likes': tune.likes})
+    else:
+        return JsonResponse({}, status=400)

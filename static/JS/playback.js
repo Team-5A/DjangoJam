@@ -87,10 +87,10 @@ function stopPlayback(oscillator, gainNode) {
 
 $(document).ready(function() {
     $('#like_btn').click(function() {
-        var catecategoryIdVar;
-        catecategoryIdVar = $(this).attr('data-tuneid');
+      let tuneIdVar;
+      tuneIdVar = $(this).attr('data-tuneID');
         $.get('/rango/like_tune/',
-            {'tune_id': catecategoryIdVar},
+            {'tune_id': tuneIdVar},
             function(data) {
                 $('#like_count').html(data);
                 $('#like_btn').hide();

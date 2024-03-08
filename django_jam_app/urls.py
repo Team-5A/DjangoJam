@@ -12,5 +12,5 @@ urlpatterns = [
     path('logout/', views.user_logout, name='logout'),
     path('profile/<slug:slug>/', views.profile, name='profile'),
     path('explore/', views.explore, name='explore'),
-    path('like_tune/', views.get, name='like_tune')
+    path('explore/like/<int:tune_id>/', views.like_tune, name='like_tune'),
 ]
