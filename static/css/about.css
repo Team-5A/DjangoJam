@@ -11,6 +11,8 @@ main {
   flex-direction: row;
   gap: 4rem;
   justify-content: space-between;
+  align-items: center;
+  margin-top: -11rem;
 }
 
 .content-text {
@@ -38,7 +40,12 @@ main {
 }
 
 .content-image img {
-  margin-top: 3rem;
+  width: 100%;
+  max-width: 36rem;
+  height: auto;
+  border-radius: 0.4rem;
+  object-fit: cover;
+  min-width: 16rem;
 }
 
 .content-links {
@@ -51,6 +58,7 @@ main {
   .content {
     flex-direction: column-reverse;
     gap: 4rem;
+    margin-top: -5rem;
   }
 
   .content-text {
