@@ -177,3 +177,15 @@ def visitor_cookie_handler(request):
         request.session['last_visit'] = last_visit_cookie
 
     request.session['visits'] = visits
+
+def append_tune_string(request):
+    key = request.GET.get('key')
+    if tune_string.count(',') < 15:
+        tune_string += ","
+        if key == "Rest":
+            tune_string += " "
+        else:
+            tune_string += key
+
+def reset_tune_string(tune_string):
+        return ""
