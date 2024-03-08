@@ -1,0 +1,16 @@
+main {
+  flex-grow: 1;
+  margin-top: -8rem;
+  padding: 0 var(--side-padding);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  max-width: 54rem;
+}
