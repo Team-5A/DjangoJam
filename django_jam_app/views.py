@@ -186,8 +186,13 @@ def visitor_cookie_handler(request):
 def like_tune(request, tune_id):
     if request.method == 'POST' and request.user.is_authenticated:
         tune = get_object_or_404(Tune, ID=tune_id)
+        user = request.user
+        user.userprofile.self_likes += 1
+        tune.creator.userprofile.total_likes += 1
         tune.likes += 1
         tune.save()
+        user.userprofile.save()
+        tune.creator.userprofile.save()
         return JsonResponse({'likes': tune.likes})
     else:
         return JsonResponse({}, status=400)

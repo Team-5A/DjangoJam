@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d144bbc4-f6ac-477f-86b1-c4cf7c52ced0" name="Changes" comment="Fix - just added explore to base.html">
-      <change afterPath="$PROJECT_DIR$/static/JS/tune_Like_Dislike.js" afterDir="false" />
+    <list default="true" id="d144bbc4-f6ac-477f-86b1-c4cf7c52ced0" name="Changes" comment="Feat : Got Likes working. Fraser Levack.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django_jam_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_jam_app/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/django_jam_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_jam_app/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/JS/playback.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/JS/playback.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/django_jam_app/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/django_jam_app/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/django_jam_app/tune_player.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/django_jam_app/tune_player.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/django_jam_app/tunes.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/django_jam_app/tunes.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -297,7 +292,7 @@
       <workItem from="1709550412030" duration="652000" />
       <workItem from="1709576714255" duration="374000" />
       <workItem from="1709821784354" duration="987000" />
-      <workItem from="1709896662891" duration="5362000" />
+      <workItem from="1709896662891" duration="7500000" />
     </task>
     <task id="LOCAL-00001" summary="Fraser L First Commit for Base Django Jam Project.">
       <option name="closed" value="true" />
@@ -363,7 +358,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709318907369</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Feat : Got Likes working. Fraser Levack.">
+      <option name="closed" value="true" />
+      <created>1709904522620</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1709904522620</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -389,6 +392,7 @@
     <MESSAGE value="Amended - Changed content of populate_jam.py to give accurate test data. 4 users and 7 tunes to populate." />
     <MESSAGE value="Added - Explore.html template to search for users and tunes. To do this there is updates in urls forms and views.py. Fraser Levack." />
     <MESSAGE value="Fix - just added explore to base.html" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix - just added explore to base.html" />
+    <MESSAGE value="Feat : Got Likes working. Fraser Levack." />
+    <option name="LAST_COMMIT_MESSAGE" value="Feat : Got Likes working. Fraser Levack." />
   </component>
 </project>
