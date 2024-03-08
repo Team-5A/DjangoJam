@@ -5,6 +5,11 @@
   Login
 {% endblock %}
 
+{% block head_block %}
+  <link rel="stylesheet" href="{% static 'css/auth.css' %}" />
+  <script src="{% static 'js/auth.js' %}" defer></script>
+{% endblock %}
+
 {% block body_block %}
   <main class="auth-form-container">
 
@@ -21,7 +26,7 @@
         <label class="label" for="password">password</label>
         <input class="input input--password" type="password" name="password" placeholder="mypassword123" size="32" />
 
-        <button id="show-password-button" type="button">show password</button>
+        <button id="show-password-button" type="button" for="password">show password</button>
       </div>
 
       <button class="button submit-button" type="submit">login</button>

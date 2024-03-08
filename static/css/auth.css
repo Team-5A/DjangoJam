@@ -1,0 +1,11 @@
+main {
+  flex-grow: 1;
+  margin-top: -8rem;
+  padding: 0 var(--side-padding);
+}
+
+@media screen and (max-width: 768px) {
+  main {
+    margin-top: -5rem;
+  }
+}
