@@ -1,4 +1,5 @@
 {% load static %}
+{% load django_jam_template_tags %}
 
 <div class="tune">
     <div class="tune-info">
@@ -16,8 +17,10 @@
             </button>
         </div>
 
+        {% if user_profile|is_current_user:request.user %}
         <button class="tune-delete">
             <img src="{% static 'images/icons/trash.svg' %}" alt="Delete Song">
         </button>
+        {% endif %}
     </div>
 </div>
