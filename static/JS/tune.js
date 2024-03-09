@@ -3,7 +3,7 @@ const tunes = Array.from(document.querySelectorAll(".tune"));
 tunes.forEach((tune) => {
   const tuneId = tune.getAttribute("data-tune-id");
 
-  const deleteTuneButton = document.querySelector(".tune-delete");
+  const deleteTuneButton = tune.querySelector(".tune-delete");
 
   deleteTuneButton.addEventListener("click", async () => {
     try {

@@ -1,10 +1,10 @@
 main {
   flex-grow: 1;
-  margin-top: -8rem;
+  margin-top: 13vh;
   padding: 0 var(--side-padding);
+  padding-bottom: 5rem;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .profile-container {
@@ -135,9 +135,16 @@ main {
   margin-left: auto;
 }
 
+.tune-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+}
+
 @media screen and (max-width: 768px) {
   main {
-    margin-top: -5rem;
+    margin-top: 10vh;
   }
 
   .profile-top {
