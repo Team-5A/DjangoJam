@@ -1,9 +1,9 @@
 const playBars = Array.from(document.querySelectorAll(".play-bar"));
 
 playBars.forEach((playBar) => {
-  const playIcon = playBar.querySelector("#play-icon");
-  const pauseIcon = playBar.querySelector("#pause-icon");
-  const togglePlayButton = playBar.querySelector("#toggle-play-button");
+  const playIcon = playBar.querySelector(".play-icon");
+  const pauseIcon = playBar.querySelector(".pause-icon");
+  const togglePlayButton = playBar.querySelector(".toggle-play");
 
   togglePlayButton.addEventListener("click", () => {
     if (playIcon.style.display === "none") {

@@ -13,4 +13,5 @@ urlpatterns = [
     path('profile/<slug:slug>/', views.profile, name='profile'),
     path('explore/', views.explore, name='explore'),
     path('delete_account/', views.delete_account, name='delete_account'),
+    path('delete_tune/<slug:tuneid>/', views.delete_tune, name='delete_tune'),
 ]

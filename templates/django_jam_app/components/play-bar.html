@@ -1,19 +1,24 @@
 {% load static %}
 
 <div class="play-bar">
-    <button id="toggle-play-button" class="toggle-play">
-        <img id="play-icon" src="{% static 'images/icons/play.svg' %}" alt="Play Song">
-        <img id="pause-icon" style="display: none;" src="{% static 'images/icons/pause.svg' %}" alt="Pause Song">
-    </button>
+  <button class="toggle-play">
+    <img class="play-icon" src="{% static 'images/icons/play.svg' %}" alt="Play Song" />
+    <img
+      class="pause-icon"
+      style="display: none"
+      src="{% static 'images/icons/pause.svg' %}"
+      alt="Pause Song"
+    />
+  </button>
 
-    <div class="progress-bar">
-        <div class="progress-bar-track"  style="width: 0;"></div>
-        <div class="progress-bar-bg"></div>
-    </div>
+  <div class="progress-bar">
+    <div class="progress-bar-track" style="width: 0"></div>
+    <div class="progress-bar-bg"></div>
+  </div>
 
-    <div class="progress-bar-timestamp">
-        <span class="current-time">0:00</span>
-        <span class="divider">/</span>
-        <span class="total-time">0:00</span>
-    </div>
+  <div class="progress-bar-timestamp">
+    <span class="current-time">0:00</span>
+    <span class="divider">/</span>
+    <span class="total-time">0:00</span>
+  </div>
 </div>
