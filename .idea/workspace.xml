@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d144bbc4-f6ac-477f-86b1-c4cf7c52ced0" name="Changes" comment="Fix - just added explore to base.html">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django_jam_app/templatetags/django_jam_template_tags.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_jam_app/templatetags/django_jam_template_tags.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django_jam_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_jam_app/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +73,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "django.template.preview.state": "SHOW_EDITOR",
-    "git-widget-placeholder": "Fix-Template-tags",
+    "git-widget-placeholder": "register",
     "last_opened_file_path": "C:/Users/user/Documents/CompSci/WAD2/Group_5A_Project_Local/Django_Jam/Django_Jam/DjangoJam",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
