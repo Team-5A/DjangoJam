@@ -2,18 +2,21 @@ const tunes = Array.from(document.querySelectorAll(".tune"));
 
 tunes.forEach((tune) => {
   const tuneId = tune.getAttribute("data-tune-id");
+  const loggedInUserId = tune.getAttribute("data-logged-in-user-id");
 
   const deleteTuneButton = tune.querySelector(".tune-delete");
 
-  deleteTuneButton.addEventListener("click", async () => {
-    try {
-      await fetch(`/django_jam_app/delete_tune/${tuneId}`);
+  if (deleteTuneButton) {
+    deleteTuneButton.addEventListener("click", async () => {
+      try {
+        await fetch(`/django_jam_app/delete_tune/${tuneId}`);
 
-      tune.remove();
-    } catch (error) {
-      alert(`Failed to delete tune: ${error}`);
-    }
-  });
+        tune.remove();
+      } catch (error) {
+        alert(`Failed to delete tune: ${error}`);
+      }
+    });
+  }
 
   const likeButton = tune.querySelector(".tune-like");
   const likeImage = tune.querySelector(".like-image");
@@ -43,15 +46,18 @@ tunes.forEach((tune) => {
 
       updateLikeButton();
 
-      localStorage.setItem(`tune-${tuneId}-liked`, likeButton.classList.contains("liked"));
+      localStorage.setItem(`tune-${tuneId}-liked-${loggedInUserId}`, likeButton.classList.contains("liked"));
     } catch (error) {
       alert(`Failed to like tune: ${error}`);
     }
   });
 
   // pre like tune
-  if (localStorage.getItem(`tune-${tuneId}-liked`) === "true") {
+  const currentLikes = parseInt(likesCount.textContent);
+  if (localStorage.getItem(`tune-${tuneId}-liked-${loggedInUserId}`) === "true" && currentLikes > 0) {
     likeButton.classList.add("liked");
     updateLikeButton();
+  } else {
+    localStorage.removeItem(`tune-${tuneId}-liked-${loggedInUserId}`);
   }
 });
