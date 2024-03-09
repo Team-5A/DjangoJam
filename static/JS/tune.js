@@ -38,8 +38,8 @@ tunes.forEach((tune) => {
       likeButton.classList.toggle("liked");
 
       // update likes count
-      likesCount.textContent =
-        parseInt(likesCount.textContent) + (likeButton.classList.contains("liked") ? 1 : -1);
+      const currentLikes = parseInt(likesCount.textContent);
+      likesCount.textContent = Math.max(0, currentLikes + (likeButton.classList.contains("liked") ? 1 : -1));
 
       updateLikeButton();
 
