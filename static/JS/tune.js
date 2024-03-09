@@ -15,9 +15,10 @@ tunes.forEach((tune) => {
     }
   });
 
-  const likeButton = document.querySelector(".tune-like");
-  const likeImage = document.querySelector(".like-image");
-  const unlikeImage = document.querySelector(".unlike-image");
+  const likeButton = tune.querySelector(".tune-like");
+  const likeImage = tune.querySelector(".like-image");
+  const unlikeImage = tune.querySelector(".unlike-image");
+  const likesCount = tune.querySelector(".tune-likes-count");
 
   const updateLikeButton = () => {
     if (likeButton.classList.contains("liked")) {
@@ -35,9 +36,22 @@ tunes.forEach((tune) => {
       //   await fetch(`/django_jam_app/like_tune/${tuneId}`);
 
       likeButton.classList.toggle("liked");
+
+      // update likes count
+      likesCount.textContent =
+        parseInt(likesCount.textContent) + (likeButton.classList.contains("liked") ? 1 : -1);
+
       updateLikeButton();
+
+      localStorage.setItem(`tune-${tuneId}-liked`, likeButton.classList.contains("liked"));
     } catch (error) {
       alert(`Failed to like tune: ${error}`);
     }
   });
+
+  // pre like tune
+  if (localStorage.getItem(`tune-${tuneId}-liked`) === "true") {
+    likeButton.classList.add("liked");
+    updateLikeButton();
+  }
 });

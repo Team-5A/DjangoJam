@@ -146,17 +146,22 @@
   display: flex;
   flex-direction: column;
   gap: 0.15rem;
+  width: 5.25rem;
 }
 
 .tune-name {
   font-size: 1rem;
   font-weight: var(--bold);
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .tune-author {
   font-size: 0.75rem;
   font-weight: var(--medium);
   opacity: 0.6;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .tune-controls {

@@ -37,6 +37,11 @@
   color: var(--text-color);
 }
 
+img {
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
 body {
   font-family: Inter, sans-serif;
   width: 100%;
