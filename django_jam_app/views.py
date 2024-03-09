@@ -91,7 +91,8 @@ def register(request):
             profile.save()
 
             login(request, user)
-            return redirect(reverse('django_jam_app:profile', args=[user.username]))
+            lower_case_username = user.username.lower()
+            return redirect(reverse('django_jam_app:profile', args=[lower_case_username]))
         else:
             errors.append(user_form.errors)
             errors.append(profile_form.errors)

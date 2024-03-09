@@ -36,9 +36,12 @@
         <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">about</a></li>
 
         {% if user.is_authenticated %}
-        {% url 'django_jam_app:profile' user.get_username as url %}
-        <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">profile</a></li>
-
+        {% with nameLower=user.username|lower %}
+        {% url 'django_jam_app:profile' nameLower as url %}
+            
+        <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">Profile</a></li>
+        {% endwith %}
+            
         <li><a href="{% url 'django_jam_app:logout' %}">logout</a></li>
         {% else %}
         {% url 'django_jam_app:login' as url %}
