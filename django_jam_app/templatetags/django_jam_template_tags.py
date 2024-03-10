@@ -3,7 +3,6 @@ from django_jam_app.models import Tune
 
 register = template.Library()
 
-
 @register.inclusion_tag('django_jam_app/tunes.html')    # Get all tunes
 def get_tune_list():
     return {'Tunes': Tune.objects.all()}
@@ -19,6 +18,10 @@ def count_tunes(user):
     return Tune.objects.filter(creator=user).count()
 
 
-@register.inclusion_tag('django_jam_app/tunes.html')    # Get tunes by user
+@register.simple_tag(name='get_tunes_by_user')    # Get tunes by user
 def get_tunes_by_user(user):
-    return {'Tunes': Tune.objects.filter(creator=user)}
+    return Tune.objects.filter(creator=user)
+
+@register.simple_tag(name='has_tunes')                # Count tunes by user
+def has_tunes(user):
+    return Tune.objects.filter(creator=user).count() > 0

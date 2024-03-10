@@ -1,6 +1,8 @@
 <ul>
   {% if Tunes %} {% for each_tune in Tunes %}
+
   {% include 'django_jam_app/tune_player.html' with tune=each_tune %}
+
   {% endfor %} {% else %}
   <li><strong>There are no tunes present.</strong></li>
   {% endif %}

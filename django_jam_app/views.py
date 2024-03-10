@@ -7,6 +7,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+
+from django.http import JsonResponse
+
 from datetime import datetime
 
 
@@ -68,6 +71,8 @@ def add_tune(request):
 def register(request):
     registered = False
 
+    errors = []
+
     if request.method == 'POST':
 
         user_form = UserForm(request.POST)
@@ -88,17 +93,26 @@ def register(request):
 
             profile.save()
 
-            registered = True
+            login(request, user)
+            lower_case_username = user.username.lower()
+            return redirect(reverse('django_jam_app:profile', args=[lower_case_username]))
         else:
-            print(user_form.errors, profile_form.errors)
+            errors.append(user_form.errors)
+            errors.append(profile_form.errors)
     else:
 
         user_form = UserForm()
         profile_form = UserProfileForm()
-
+    
+    error_key = ""
+    error = ""
+    if len(errors) > 0:
+        error_key = list(errors[0].keys())[0]
+        error = f"{'error' if error_key.startswith('__') else error_key}: {errors[0][error_key][0].lower()}"
+    
     return render(request, 'django_jam_app/register.html',
                   context={'user_form': user_form, 'profile_form': profile_form,
-                           'registered': registered})
+                           'registered': registered, 'has_error': len(errors) > 0, 'error': error  })
 
 
 def user_login(request):
@@ -114,18 +128,27 @@ def user_login(request):
             if user.is_active:
 
                 login(request, user)
-                return redirect(reverse('django_jam_app:index'))
+                lower_case_username = user.username.lower()
+                return redirect(reverse('django_jam_app:profile', args=[lower_case_username]))
             else:
 
-                return HttpResponse("Your Rango account is disabled.")
+                return render(request, 'django_jam_app/login.html', context={
+                    'has_error': True,
+                    'error': 'Your DjangoJam account is disabled.',
+                }) 
         else:
-
-            print(f"Invalid login details: {username}, {password}")
-            return HttpResponse("Invalid login details supplied.")
+            return render(request, 'django_jam_app/login.html', context={
+                'has_error': True,
+                'error': 'Invalid login details.',
+            }) 
 
     else:
 
-        return render(request, 'django_jam_app/login.html')
+
+        return render(request, 'django_jam_app/login.html', context={
+            'has_error': False,
+            'error': '',
+        })
 
 
 def profile(request, slug):
@@ -146,7 +169,8 @@ def explore(request):
         user_profiles = UserProfile.objects.filter(user__username__icontains=query)
         tunes = Tune.objects.filter(name__icontains=query)
 
-    return render(request, 'django_jam_app/explore.html', {'form': form, 'user_profiles': user_profiles, 'tunes': tunes})
+    return render(request, 'django_jam_app/explore.html',
+                  {'form': form, 'user_profiles': user_profiles, 'tunes': tunes})
 
 
 @login_required
@@ -187,3 +211,54 @@ def save_tune(request):
         Tune.objects.create(notes=tune_input, creator=tune_creator, name=tune_name, slug=tune_name)
         return HttpResponseRedirect('/django_jam_app/')  # Redirect to success page or wherever you want
     return render(request, 'django_jam_app/add_tune.html')  # Render the same page if not a POST request
+
+
+def like_tune(request, tune_id):
+    if not request.user.is_authenticated:
+        return JsonResponse({'likes': -1})
+
+    tune = Tune.objects.get(ID=tune_id)
+    tune.likes = tune.likes + 1
+    tune.creator.userprofile.total_likes += 1
+    request.user.userprofile.self_likes = request.user.userprofile.self_likes + 1
+    request.user.userprofile.save()
+    tune.creator.userprofile.save()
+    tune.save()
+
+    return JsonResponse({'likes': tune.likes})
+
+
+def unlike_tune(request, tune_id):
+    if not request.user.is_authenticated:
+        return JsonResponse({'likes': -1})
+
+    tune = Tune.objects.get(ID=tune_id)
+    tune.likes = max(0, tune.likes - 1)
+    tune.creator.userprofile.total_likes = max(0, tune.creator.userprofile.total_likes - 1)
+    request.user.userprofile.self_likes = max(0, request.user.userprofile.self_likes - 1)
+    request.user.userprofile.save()
+    tune.creator.userprofile.save()
+    tune.save()
+
+    return JsonResponse({'likes': tune.likes})
+
+
+def delete_account(request):
+    user = request.user
+    if user.is_authenticated:
+        user.delete()
+    
+    logout(request)
+
+    return redirect(reverse('django_jam_app:index'))
+
+
+def delete_tune(request, tuneid):
+    tune = get_object_or_404(Tune, ID=tuneid)
+
+    if tune.creator != request.user or not request.user.is_authenticated:
+        return HttpResponse('You are not authorized to delete this tune.', status=403)
+
+    tune.delete()
+
+    return redirect(reverse('django_jam_app:index'))

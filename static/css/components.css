@@ -37,3 +37,234 @@
   outline: none;
   background-color: var(--accent-color-bright);
 }
+
+/* form components */
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.input {
+  padding: 1.1rem 1.25rem;
+  font-size: 1rem;
+  font-weight: var(--medium);
+  color: var(--bg-color);
+  background-color: var(--text-color);
+  border-radius: 0.4rem;
+  flex-grow: 1;
+  border: none;
+  outline: none !important;
+}
+
+.label {
+  font-size: 0.8rem;
+  font-weight: var(--bold);
+  color: var(--accent-color);
+}
+
+.show-password-button {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: var(--bold);
+  color: var(--primary-color-bright);
+  transition: color 0.3s ease;
+  margin-left: auto;
+}
+
+.show-password-button:hover {
+  color: var(--primary-color);
+}
+
+.submit-button {
+  flex-grow: 1;
+  height: 4rem;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 25rem;
+}
+
+.auth-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.auth-form-title {
+  margin: 0 auto;
+  margin-bottom: 1rem;
+}
+
+.auth-form .submit-button {
+  margin-top: 0.5rem;
+}
+
+.link {
+  color: var(--primary-color);
+  font-weight: var(--semi-bold);
+  text-decoration: underline;
+  font-size: 1rem;
+}
+
+.form-error {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: var(--error-color);
+  background-color: var(--error-color-light);
+  border: 0.15rem solid var(--error-color);
+  border-radius: 0.4rem;
+  padding: 1.25rem 1rem;
+}
+
+.tune {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 5rem;
+  background-color: var(--bg-color-light);
+  padding: 1.25rem;
+  border-radius: 0.4rem;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.tune-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  width: 5.25rem;
+}
+
+.tune-name {
+  font-size: 1rem;
+  font-weight: var(--bold);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tune-author {
+  font-size: 0.75rem;
+  font-weight: var(--medium);
+  opacity: 0.6;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tune-controls {
+  display: flex;
+  flex-direction: row;
+  gap: 1.25rem;
+}
+
+.tune-likes {
+  display: flex;
+  flex-direction: row;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.tune-likes button {
+  --size: 1.5rem;
+  width: var(--size);
+  height: var(--size);
+  background: none;
+  border: none;
+  outline: none !important;
+  cursor: pointer;
+}
+
+.tune-likes button img {
+  width: 100%;
+  height: 100%;
+}
+
+.tune-likes p {
+  font-size: 0.75rem;
+  opacity: 0.6;
+  font-weight: var(--medium);
+  width: 2.5rem;
+}
+
+.tune-delete {
+  --size: 2.15rem;
+  width: var(--size);
+  height: var(--size);
+  background-color: var(--error-color);
+  padding: 0.4rem;
+  border: none;
+  outline: none !important;
+  border-radius: 0.4rem;
+  cursor: pointer;
+}
+
+.tune-delete img {
+  width: 100%;
+  height: 100%;
+}
+
+.play-bar {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.toggle-play {
+  width: 1.25rem;
+  height: 1.25rem;
+  border: none;
+  background: transparent;
+  outline: none !important;
+  cursor: pointer;
+}
+
+.toggle-play img {
+  width: 100%;
+  height: 100%;
+}
+
+.progress-bar {
+  flex-grow: 1;
+  height: 0.5rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.progress-bar div {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: 0.5rem;
+}
+
+.progress-bar-bg {
+  background-color: var(--text-color);
+  opacity: 0.15;
+}
+
+.progress-bar-track {
+  background-color: var(--accent-color);
+  border-radius: 0.5rem;
+}
+
+.progress-bar-timestamp {
+  color: var(--text-color);
+  opacity: 0.4;
+  font-size: 0.75rem;
+  font-weight: var(--medium);
+}

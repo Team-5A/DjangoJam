@@ -36,6 +36,12 @@
         <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">about</a></li>
 
         {% if user.is_authenticated %}
+        {% with nameLower=user.username|lower %}
+        {% url 'django_jam_app:profile' nameLower as url %}
+            
+        <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">profile</a></li>
+        {% endwith %}
+            
         <li><a href="{% url 'django_jam_app:logout' %}">logout</a></li>
         {% else %}
         {% url 'django_jam_app:login' as url %}
@@ -79,4 +85,5 @@
   </body>
 
   <script type="text/javascript" src="{% static 'JS/playback.js' %}"></script>
+  <script type="text/javascript" src="{% static 'JS/like_dislike.js' %}"></script>
 </html>

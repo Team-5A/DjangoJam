@@ -5,14 +5,37 @@
   Login
 {% endblock %}
 
+{% block head_block %}
+  <link rel="stylesheet" href="{% static 'css/auth.css' %}" />
+  <script src="{% static 'js/auth.js' %}" defer></script>
+{% endblock %}
+
 {% block body_block %}
-  <h1>Login to Django Jam</h1>
-  <form id="login_form" method="post" action="{% url 'django_jam_app:login' %}">
-    {% csrf_token %}
-    Username: <input type="text" name="username" value="" size="50" />
-    <br />
-    Password: <input type="password" name="password" value="" size="50" />
-    <br />
-    <input type="submit" value="submit" />
-  </form>
+  <main class="auth-form-container">
+
+    <form class="auth-form" id="login_form" method="post" action="{% url 'django_jam_app:login' %}">
+      {% csrf_token %}
+      <h1 class="auth-form-title">Login</h1>
+
+      <div class="input-container">
+        <label class="label" for="username">username</label>
+        <input class="input" type="text" name="username" placeholder="jsmithy" size="32" />
+      </div>
+
+      <div class="input-container">
+        <label class="label" for="password">password</label>
+        <input class="input input--password" type="password" name="password" placeholder="mypassword123" size="32" />
+
+        <button class="show-password-button" tabindex="-1" type="button" for="password">show password</button>
+      </div>
+
+      {% if has_error %}
+        <div class="form-error">
+          {{ error }}
+        </div>
+      {% endif %}
+
+      <button class="button submit-button" type="submit">login</button>
+    </form>
+  </main>
 {% endblock %}

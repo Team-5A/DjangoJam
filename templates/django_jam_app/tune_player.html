@@ -3,5 +3,17 @@
     Play
   </button>
   <strong class="name">{{ tune.name }}</strong>
+  <strong class="id">{{ tune.ID }}</strong>
   <span class="notes" style="opacity: 0.5">{{ tune.notes }}</span>
+  
+    <div>
+        <span><strong id="like-count-{{ tune.ID }}">{{ tune.likes }}</strong></span> likes
+
+        {% if user.is_authenticated %}
+        <button data-tune-id="{{ tune.ID }}" class="like-btn" type="button">
+          &#128077;
+        </button>
+        {% endif %}
+    </div>
+    
 </li>
