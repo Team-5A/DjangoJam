@@ -31,7 +31,7 @@ class Tune(models.Model):
     views = models.IntegerField(default=0)
     likes = models.IntegerField(default=0)
     notes = models.CharField(max_length=64)
-    beats_per_minute = models.IntegerField(default=0)
+    beats_per_minute = models.IntegerField(default=60)
     # add slug field to store the url of the tune.
     slug = models.SlugField(unique=True)
 
