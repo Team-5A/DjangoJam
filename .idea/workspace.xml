@@ -41,7 +41,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="register" />
+        <entry key="$PROJECT_DIR$" value="likes/dislikes" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -246,8 +246,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.python manage.py runserver" />
         <item itemvalue="Python.python populate_jam.py" />
+        <item itemvalue="Python.python manage.py runserver" />
         <item itemvalue="Python.python manage.py migrate" />
         <item itemvalue="Python.python manage.py makemigrations django_jam_app" />
         <item itemvalue="Python.populate_jam" />
