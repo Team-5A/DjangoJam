@@ -6,38 +6,48 @@
 {% endblock %}
 
 {% block head_block %}
-    <script src="{% static 'js/tune.js' %}" defer></script>
+    <link href="{% static 'css/explore.css' %}" rel="stylesheet">
+
+    <script src="{% static 'js/explore.js' %}" defer></script>
     <script src="{% static 'js/play-bar.js' %}" defer></script>
+    <script src="{% static 'js/tune.js' %}" defer></script>
 {% endblock %}
 
 {% block body_block %}
-    
-    <h1>Explore</h1>
+    <main>
+        <div class="content">
+            <form id="search-form" action="">
+                <div class="search-bar">
+                    <input id="search-query" name="query" size="10" type="text" placeholder="Search..." required>
 
-    <form method="get" action="{% url 'django_jam_app:explore' %}">
-        {{ form.as_p }}
-        <button type="submit">Search</button>
-    </form>
-    
-    <h2>Users</h2>
-    <ul>
-        {% for user_profile in user_profiles %}
-            <li>
-            <strong><a href="{% url 'django_jam_app:profile' user_profile.slug %}">{{ user_profile.user.username }}</a></strong>
-            </li>
-        {% empty %}
-            <li>No users found</li>
-        {% endfor %}
-    </ul>
-    
-    <h2>Tunes</h2>
-    <ul>
-        {% for tune in tunes %}
-            {% include 'django_jam_app/components/tune.html' with tune=tune user_profile=tune.creator.userprofile %}
-        {% empty %}
-            <li>No tunes found</li>
-        {% endfor %}
-    </ul>
+                    <button class="button" type="submit">
+                        <img src="{% static 'images/icons/search.svg' %}" alt="Search">
+                    </button>
+                </div>
 
+                <div class="dropdown-select-wrapper">
+                    <select id="search-category" class="dropdown-select" name="category">
+                        <option value="by-user">By User</option>
+                        <option value="by-tune">By Song</option>
+                    </select>
+                </div>
+            </form>
 
+            <div id="top-5">
+                <button id="top-5-users" class="button button--secondary" data-category="users">Top 5 Users</button>
+                <button id="top-5-tunes" class="button button--secondary" data-category="tunes">Top 5 Songs</button>
+            </div>
+
+            {% comment %} tunes list {% endcomment %}
+            <section class="explore-tune-list">
+                {% if tunes %}
+                    <div class="tune-list">
+                        {% for tune in tunes %}
+                            {% include 'django_jam_app/components/tune.html' with tune=tune user_profile=tune.creator.userprofile %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </section>
+        </div>
+    </main>    
 {% endblock %}

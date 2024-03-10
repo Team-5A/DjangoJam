@@ -161,16 +161,38 @@ def profile(request, slug):
 
 def explore(request):
     form = SearchForm(request.GET)
-    user_profiles = []
     tunes = []
 
     if form.is_valid():
         query = form.cleaned_data['query']
-        user_profiles = UserProfile.objects.filter(user__username__icontains=query)
-        tunes = Tune.objects.filter(name__icontains=query)
+        category = form.cleaned_data['category']
+
+        if category == 'by-user':
+            tunes = Tune.objects.filter(creator__username__icontains=query)
+        elif category == 'by-tune':
+            tunes = Tune.objects.filter(name__icontains=query)
+    
+    elif request.method == "GET" and 'top-5' in request.GET: 
+        top5_category = request.GET.get('top-5')
+        if top5_category not in ['users', 'tunes']:
+            top5_category = 'tunes'
+        
+        if top5_category == 'users':
+            tunes_temp = Tune.objects.order_by('-creator__userprofile__total_likes')
+
+            encountered_users = set()
+            for tune in tunes_temp:
+                if len(encountered_users) > 5:
+                    break
+
+                encountered_users.add(tune.creator)
+                tunes.append(tune)
+                
+        else:
+            tunes = Tune.objects.order_by('-likes')[:5]
 
     return render(request, 'django_jam_app/explore.html',
-                  {'form': form, 'user_profiles': user_profiles, 'tunes': tunes})
+                  {'form': form, 'tunes': tunes})
 
 
 @login_required
