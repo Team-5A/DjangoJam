@@ -51,7 +51,7 @@ def show_tune(request, tune_name_slug):
 
 
 # @login_required
-def add_tune(request):
+def create(request):
     form = TuneForm()
 
     if request.method == 'POST':
@@ -65,7 +65,7 @@ def add_tune(request):
         else:
             print(form.errors)
 
-    return render(request, 'django_jam_app/add_tune.html', {'form': form})
+    return render(request, 'django_jam_app/create.html', {'form': form})
 
 
 def register(request):
