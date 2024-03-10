@@ -1,6 +1,7 @@
 from django import forms
 from django_jam_app.models import Tune, UserProfile
 from django.contrib.auth.models import User
+from django.template.defaultfilters import slugify
 
 
 class TuneForm(forms.ModelForm):
@@ -10,6 +11,14 @@ class TuneForm(forms.ModelForm):
     views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     likes = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     slug = forms.CharField(widget=forms.HiddenInput(), required=False)
+
+    def clean(self):
+        cleaned_data = super(TuneForm, self).clean()
+        name = cleaned_data.get('name')
+
+        # stop tune from being created if duplicate slug
+        if Tune.objects.filter(slug=slugify(name)).exists():
+            raise forms.ValidationError("Tune already exists.")
 
     class Meta:
         model = Tune
@@ -36,6 +45,10 @@ class UserForm(forms.ModelForm):
         cleaned_data = super(UserForm, self).clean()
         password = cleaned_data.get('password')
         confirmPassword = cleaned_data.get('confirmPassword')
+
+        # stop user from being created if duplicate slug
+        if UserProfile.objects.filter(slug=slugify(cleaned_data.get('username'))).exists():
+            raise forms.ValidationError("Username already exists.")
 
         if password != confirmPassword:
             raise forms.ValidationError("Passwords do not match.")
