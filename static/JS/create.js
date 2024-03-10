@@ -99,16 +99,22 @@ Object.keys(frequencyMap).forEach((note) => {
 
   // interactions
   key.addEventListener("click", (e) => {
+    if (e.target.getAttribute("data-playing") === "true") {
+      return;
+    }
+
     const oscillator = setupOscillator();
 
     // play note
     e.target.classList.add("active");
+    e.target.setAttribute("data-playing", "true");
     dot.classList.add("active");
     playNote(e.target.getAttribute("data-note"), oscillator);
 
     // stop playing note
     setTimeout(() => {
       e.target.classList.remove("active");
+      e.target.setAttribute("data-playing", "false");
       dot.classList.remove("active");
       stopPlayback(oscillator);
     }, 500);
