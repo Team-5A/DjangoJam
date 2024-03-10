@@ -69,4 +69,17 @@ class UserProfileForm(forms.ModelForm):
 
 # Search form
 class SearchForm(forms.Form):
-    query = forms.CharField(label='Search')
+    query = forms.CharField()
+    category = forms.CharField()
+
+    def clean(self):
+        cleaned_data = super(SearchForm, self).clean()
+        query = cleaned_data.get('query')
+        category = cleaned_data.get('category')
+
+        if not query and not category:
+            raise forms.ValidationError("Please enter a search term or select a category.")
+        if category not in ['by-user', 'by-tune']:
+            raise forms.ValidationError("Invalid category.")
+
+        return cleaned_data
