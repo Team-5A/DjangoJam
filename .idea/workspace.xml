@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d144bbc4-f6ac-477f-86b1-c4cf7c52ced0" name="Changes" comment="Feat : Dislikes Added.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/django_jam_app/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/django_jam_app/base.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +93,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "django.template.preview.state": "SHOW_EDITOR",
-    "git-widget-placeholder": "likes/dislikes",
+    "git-widget-placeholder": "master",
     "last_opened_file_path": "C:/Users/TUF/Workspace",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
