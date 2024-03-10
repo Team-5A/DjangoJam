@@ -12,4 +12,6 @@ urlpatterns = [
     path('logout/', views.user_logout, name='logout'),
     path('profile/<slug:slug>/', views.profile, name='profile'),
     path('explore/', views.explore, name='explore'),
+    path('delete_account/', views.delete_account, name='delete_account'),
+    path('delete_tune/<int:tuneid>/', views.delete_tune, name='delete_tune'),
 ]

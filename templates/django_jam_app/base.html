@@ -39,7 +39,7 @@
         {% with nameLower=user.username|lower %}
         {% url 'django_jam_app:profile' nameLower as url %}
             
-        <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">Profile</a></li>
+        <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">profile</a></li>
         {% endwith %}
             
         <li><a href="{% url 'django_jam_app:logout' %}">logout</a></li>
