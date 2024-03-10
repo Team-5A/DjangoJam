@@ -7,26 +7,13 @@
   <span class="notes" style="opacity: 0.5">{{ tune.notes }}</span>
   
     <div>
-    <form id="like_form">
-        {% csrf_token %}
-        <!-- Other form fields -->
+        <span><strong id="like-count-{{ tune.ID }}">{{ tune.likes }}</strong></span> likes
 
-        <span id="like_count_{{ tune.ID }}"><strong>{{ tune.likes }}</strong></span> likes
         {% if user.is_authenticated %}
-        <button
-          data-tuneID="{{ tune.ID }}"
-          class="like_btn" type="button">
-          <span data-feather="thumbs-up"></span>
+        <button data-tune-id="{{ tune.ID }}" class="like-btn" type="button">
           &#128077;
         </button>
-            
-        <button
-          data-tuneID="{{ tune.ID }}"
-          class="dislike_btn" type="button">
-          <span data-feather="thumbs-down"></span>&#128078;</button>
-            
         {% endif %}
-    </form>
     </div>
     
 </li>

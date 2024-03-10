@@ -69,10 +69,7 @@ function setupOscillator() {
 
 function playNote(note, oscillator) {
   if (note in frequencyMap) {
-    oscillator.frequency.setValueAtTime(
-      frequencyMap[note],
-      audioContext.currentTime
-    );
+    oscillator.frequency.setValueAtTime(frequencyMap[note], audioContext.currentTime);
   } else if (note.trim() === "") {
     oscillator.frequency.setValueAtTime(0, audioContext.currentTime);
   } else {
@@ -84,16 +81,3 @@ function playNote(note, oscillator) {
 function stopPlayback(oscillator, gainNode) {
   oscillator.frequency.setValueAtTime(0, audioContext.currentTime);
 }
-
-$(document).ready(function() {
-    $('#like_btn').click(function() {
-      let tuneIdVar;
-      tuneIdVar = $(this).attr('data-tuneID');
-        $.get('/rango/like_tune/',
-            {'tune_id': tuneIdVar},
-            function(data) {
-                $('#like_count').html(data);
-                $('#like_btn').hide();
-            })
-    });
-});
