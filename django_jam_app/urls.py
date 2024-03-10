@@ -14,4 +14,6 @@ urlpatterns = [
     path('explore/', views.explore, name='explore'),
     path('delete_account/', views.delete_account, name='delete_account'),
     path('delete_tune/<int:tuneid>/', views.delete_tune, name='delete_tune'),
+    path('like_tune/<int:tune_id>/', views.like_tune, name='like_tune'),
+    path('unlike_tune/<int:tune_id>/', views.unlike_tune, name='unlike_tune'),
 ]

@@ -7,6 +7,9 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+
+from django.http import JsonResponse
+
 from datetime import datetime
 
 
@@ -165,7 +168,8 @@ def explore(request):
         user_profiles = UserProfile.objects.filter(user__username__icontains=query)
         tunes = Tune.objects.filter(name__icontains=query)
 
-    return render(request, 'django_jam_app/explore.html', {'form': form, 'user_profiles': user_profiles, 'tunes': tunes})
+    return render(request, 'django_jam_app/explore.html',
+                  {'form': form, 'user_profiles': user_profiles, 'tunes': tunes})
 
 
 @login_required
@@ -196,6 +200,27 @@ def visitor_cookie_handler(request):
         request.session['last_visit'] = last_visit_cookie
 
     request.session['visits'] = visits
+
+
+def like_tune(request, tune_id):
+    if not request.user.is_authenticated:
+        return JsonResponse({'likes': -1 })
+
+    tune = Tune.objects.get(ID=tune_id)
+    tune.likes = tune.likes + 1
+    tune.save()
+
+    return JsonResponse({'likes': tune.likes})
+
+def unlike_tune(request, tune_id):
+    if not request.user.is_authenticated:
+        return JsonResponse({'likes': -1 })
+
+    tune = Tune.objects.get(ID=tune_id)
+    tune.likes = max(0, tune.likes - 1)
+    tune.save()
+
+    return JsonResponse({'likes': tune.likes})
 
 
 def delete_account(request):

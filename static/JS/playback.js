@@ -69,10 +69,7 @@ function setupOscillator() {
 
 function playNote(note, oscillator) {
   if (note in frequencyMap) {
-    oscillator.frequency.setValueAtTime(
-      frequencyMap[note],
-      audioContext.currentTime
-    );
+    oscillator.frequency.setValueAtTime(frequencyMap[note], audioContext.currentTime);
   } else if (note.trim() === "") {
     oscillator.frequency.setValueAtTime(0, audioContext.currentTime);
   } else {

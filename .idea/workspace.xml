@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d144bbc4-f6ac-477f-86b1-c4cf7c52ced0" name="Changes" comment="Fix - just added explore to base.html">
+    <list default="true" id="d144bbc4-f6ac-477f-86b1-c4cf7c52ced0" name="Changes" comment="Feat : Dislikes Added.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/django_jam_app/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/django_jam_app/base.html" afterDir="false" />
     </list>
@@ -17,10 +17,24 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/like/dislike" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
         <option value="Fraser Levack &lt;2777042l@student.gla.ac.uk&gt;" />
@@ -39,6 +53,13 @@
     &quot;assignee&quot;: &quot;Fraser-Levack&quot;
   }
 }</component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="master" />
+      </list>
+    </option>
+  </component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -73,8 +94,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "django.template.preview.state": "SHOW_EDITOR",
-    "git-widget-placeholder": "fix-no-profile-in-nav",
-    "last_opened_file_path": "C:/Users/user/Documents/CompSci/WAD2/Group_5A_Project_Local/Django_Jam/Django_Jam_Base/Django_Jam_Register/DjangoJam",
+    "git-widget-placeholder": "likes/dislikes",
+    "last_opened_file_path": "C:/Users/TUF/Workspace",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -84,7 +105,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Django Server.DjangoJam">
+  <component name="RunManager" selected="Python.populate_jam">
     <configuration name="populate_jam" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="DjangoJam" />
       <option name="ENV_FILES" value="" />
@@ -270,7 +291,7 @@
       <workItem from="1709550412030" duration="652000" />
       <workItem from="1709576714255" duration="374000" />
       <workItem from="1709821784354" duration="987000" />
-      <workItem from="1709914105413" duration="4007000" />
+      <workItem from="1709896662891" duration="12134000" />
     </task>
     <task id="LOCAL-00001" summary="Fraser L First Commit for Base Django Jam Project.">
       <option name="closed" value="true" />
@@ -336,7 +357,31 @@
       <option name="project" value="LOCAL" />
       <updated>1709318907369</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Feat : Got Likes working. Fraser Levack.">
+      <option name="closed" value="true" />
+      <created>1709904522620</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1709904522620</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Feat : Likes updated in profile.">
+      <option name="closed" value="true" />
+      <created>1709908511128</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1709908511128</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Feat : Dislikes Added.">
+      <option name="closed" value="true" />
+      <created>1709909025323</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1709909025323</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -362,16 +407,9 @@
     <MESSAGE value="Amended - Changed content of populate_jam.py to give accurate test data. 4 users and 7 tunes to populate." />
     <MESSAGE value="Added - Explore.html template to search for users and tunes. To do this there is updates in urls forms and views.py. Fraser Levack." />
     <MESSAGE value="Fix - just added explore to base.html" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix - just added explore to base.html" />
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/DjangoJam$python_manage_py_migrate.coverage" NAME="python manage.py migrate Coverage Results" MODIFIED="1709577047824" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/DjangoJam$populate_jam.coverage" NAME="populate_jam Coverage Results" MODIFIED="1709311353051" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/DjangoJam$python_populate_jam_py.coverage" NAME="python populate_jam.py Coverage Results" MODIFIED="1709311487232" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/DjangoJam$python_manage_py_makemigrations_django_jam_app.coverage" NAME="python manage.py makemigrations django_jam_app Coverage Results" MODIFIED="1709577041626" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/DjangoJam$python_manage_py_createsuperuser.coverage" NAME="python manage.py createsuperuser Coverage Results" MODIFIED="1708959574612" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/DjangoJam$python_manage_py_runserver__Ip_Port.coverage" NAME="python manage.py runserver #Ip&amp;Port Coverage Results" MODIFIED="1708959735178" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Django_Jam_Base$settings.coverage" NAME="settings Coverage Results" MODIFIED="1708704361561" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/django_jam_project" />
-    <SUITE FILE_PATH="coverage/DjangoJam$python_manage_py_runserver.coverage" NAME="python manage.py runserver Coverage Results" MODIFIED="1709576848043" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <MESSAGE value="Feat : Got Likes working. Fraser Levack." />
+    <MESSAGE value="Feat : Likes updated in profile." />
+    <MESSAGE value="Feat : Dislikes Added." />
+    <option name="LAST_COMMIT_MESSAGE" value="Feat : Dislikes Added." />
   </component>
 </project>
