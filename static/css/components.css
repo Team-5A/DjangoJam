@@ -197,6 +197,7 @@
   opacity: 0.6;
   font-weight: var(--medium);
   width: 2.5rem;
+  text-align: center;
 }
 
 .tune-delete {

@@ -12,6 +12,7 @@ urlpatterns = [
     path('logout/', views.user_logout, name='logout'),
     path('profile/<slug:slug>/', views.profile, name='profile'),
     path('explore/', views.explore, name='explore'),
+    path('save/', views.save_tune, name='save_tune'),
     path('delete_account/', views.delete_account, name='delete_account'),
     path('delete_tune/<int:tuneid>/', views.delete_tune, name='delete_tune'),
     path('like_tune/<int:tune_id>/', views.like_tune, name='like_tune'),

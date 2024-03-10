@@ -3,7 +3,7 @@ from django_jam_app.models import Tune, UserProfile
 from django_jam_app.forms import TuneForm, UserForm, UserProfileForm, SearchForm
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -225,6 +225,16 @@ def visitor_cookie_handler(request):
     request.session['visits'] = visits
 
 
+def save_tune(request):
+    if request.method == 'POST':
+        tune_input = request.POST.get('tune_input')
+        tune_name = request.POST.get('name_input')
+        tune_creator = request.user
+        Tune.objects.create(notes=tune_input, creator=tune_creator, name=tune_name, slug=tune_name)
+        return HttpResponseRedirect('/django_jam_app/')  # Redirect to success page or wherever you want
+    return render(request, 'django_jam_app/add_tune.html')  # Render the same page if not a POST request
+
+
 def like_tune(request, tune_id):
     if not request.user.is_authenticated:
         return JsonResponse({'likes': -1})
@@ -263,6 +273,7 @@ def delete_account(request):
     logout(request)
 
     return redirect(reverse('django_jam_app:index'))
+
 
 def delete_tune(request, tuneid):
     tune = get_object_or_404(Tune, ID=tuneid)

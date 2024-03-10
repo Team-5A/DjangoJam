@@ -36,13 +36,19 @@ tunes.forEach((tune) => {
 
   likeButton.addEventListener("click", async () => {
     try {
-      //   await fetch(`/django_jam_app/like_tune/${tuneId}`);
+      const isLike = !likeButton.classList.contains("liked");
+
+      if (isLike) {
+        await fetch(`/django_jam_app/like_tune/${tuneId}`);
+      } else {
+        await fetch(`/django_jam_app/unlike_tune/${tuneId}`);
+      }
 
       likeButton.classList.toggle("liked");
 
       // update likes count
       const currentLikes = parseInt(likesCount.textContent);
-      likesCount.textContent = Math.max(0, currentLikes + (likeButton.classList.contains("liked") ? 1 : -1));
+      likesCount.textContent = Math.max(0, currentLikes + (isLike ? 1 : -1));
 
       updateLikeButton();
 
