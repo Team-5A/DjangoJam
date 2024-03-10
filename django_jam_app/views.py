@@ -161,16 +161,19 @@ def profile(request, slug):
 
 def explore(request):
     form = SearchForm(request.GET)
-    user_profiles = []
     tunes = []
 
     if form.is_valid():
         query = form.cleaned_data['query']
-        user_profiles = UserProfile.objects.filter(user__username__icontains=query)
-        tunes = Tune.objects.filter(name__icontains=query)
+        category = form.cleaned_data['category']
+
+        if category == 'by-user':
+            tunes = Tune.objects.filter(creator__username__icontains=query)
+        elif category == 'by-tune':
+            tunes = Tune.objects.filter(name__icontains=query)
 
     return render(request, 'django_jam_app/explore.html',
-                  {'form': form, 'user_profiles': user_profiles, 'tunes': tunes})
+                  {'form': form, 'tunes': tunes})
 
 
 @login_required
