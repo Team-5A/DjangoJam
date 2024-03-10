@@ -221,3 +221,23 @@ def unlike_tune(request, tune_id):
     tune.save()
 
     return JsonResponse({'likes': tune.likes})
+
+
+def delete_account(request):
+    user = request.user
+    if user.is_authenticated:
+        user.delete()
+    
+    logout(request)
+
+    return redirect(reverse('django_jam_app:index'))
+
+def delete_tune(request, tuneid):
+    tune = get_object_or_404(Tune, ID=tuneid)
+
+    if tune.creator != request.user or not request.user.is_authenticated:
+        return HttpResponse('You are not authorized to delete this tune.', status=403)
+
+    tune.delete()
+
+    return redirect(reverse('django_jam_app:index'))

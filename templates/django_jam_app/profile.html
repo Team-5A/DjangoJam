@@ -10,43 +10,92 @@
     {% endif %}
 {% endblock %}
 
-{% block body_block %}
+{% block head_block %}
+  <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+  <script src="{% static 'js/profile.js' %}" defer></script>
+  <script src="{% static 'js/play-bar.js' %}" defer></script>
+  <script src="{% static 'js/tune.js' %}" defer></script>
+{% endblock %}
 
-    {% if user_profile|is_current_user:request.user %}
-        <h1>Your Profile</h1>
-    {% else %}
-        <h1>{{ user_profile.user.username }}'s Profile</h1>
-    {% endif %}
-     <div>
-         <!-- Profile Picture From Media -->
-         {% if user_profile.picture %}
-             <strong> {{ MEDIA_URL }}{{ user_profile.picture }} </strong>
-             <img src="{{ MEDIA_URL }}{{ user_profile.picture }}" alt="Profile Picture" class="profile-picture">
-         {% else %}
-            <strong> No profile picture uploaded.</strong>
-         {% endif %}
-         <!-- User Info -->
-         <!-- Username -->
-         <h2>{{ user_profile.user.username }}</h2>  
-        
-         <h5> Stats </h5>
-         <!-- Number of Tunes created -->
-         <p>{{ user_profile.user|count_tunes }} tunes made!</p>
-         
-         <!-- Total likes awarded -->
-         <p>{{ user_profile.total_likes }} Total likes!</p>
-         
-         <!-- Number of Tunes played -->
-         <p>Played {{ user_profile.number_of_tunes_played}} tunes!</p>
-         
-         <!-- Number of Tunes liked -->
-         <p>Liked {{ user_profile.self_likes }} tunes!</p>
-     
-         <h5> {{ user_profile.user.username }}'s Tunes </h5>
-     
-         <!-- Tunes Created by User -->
-         {% get_tunes_by_user user_profile.user %}
+{% block body_block %}
+  <main>
+    <div class="profile-container">
+
+      {% comment %} top section {% endcomment %}
+      <section class="profile-top">
+        <div class="profile-picture">
+          {% if user_profile.picture %}
+              <img src="{{ MEDIA_URL }}{{ user_profile.picture }}" alt="{{ user_profile.user.username }}'s profile picture">
+          {% else %}
+              <img src="{% static 'images/default-profile-picture.svg' %}" alt="{{ user_profile.user.username }}'s profile picture">
+          {% endif %}
+        </div>
+
+        <div class="profile-info">
+          <div class="username-container">
+            <div>
+              <p class="tag">username</p>
+              <h1 class="username">{{ user_profile.user.username }}</h1>
+            </div>
+
+            {% if user_profile|is_current_user:request.user %}
+              <button id="delete-account-button" class="button button--secondary">delete account</button>
+            {% endif %}
+          </div>
+
+          <div>
+            <p class="tag">stats</p>
+
+            <div class="profile-stats">
+              <div class="profile-stat">
+                <img src="{% static 'images/icons/piano.svg' %}" alt="songs made icon">
+                <p>{{ user_profile.user|count_tunes }} songs made</p>
+              </div>
+
+              <div class="profile-stat">
+                <img src="{% static 'images/icons/heart.svg' %}" alt="likes icon">
+                <p>{{ user_profile.total_likes }} total likes</p>
+              </div>
+
+              <div class="profile-stat">
+                <img src="{% static 'images/icons/note.svg' %}" alt="songs played icon">
+                <p>{{ user_profile.number_of_tunes_played }} songs played</p>
+              </div>
+
+              <div class="profile-stat">
+                <img src="{% static 'images/icons/heart.svg' %}" alt="songs liked icon">
+                <p>{{ user_profile.self_likes }} songs liked</p>
+              </div>
+            </div>
+        </div>
+      </section>
+
+      {% comment %} tunes list {% endcomment %}
+      <section class="profile-tune-list">
+        {% has_tunes user_profile.user as has_tunes %}
+
+        <div class="tune-list-title">
+          <h2>{{ user_profile.user.username }}'s songs</h2>
+
+          {% if not has_tunes %}
+            <p class="tune-no-songs">no songs available</p>
+          {% endif %}
+        </div>
+
+        <div class="tune-list">
+          {% if has_tunes %}
+            {% get_tunes_by_user user_profile.user as tunes %}
+
+            {% for tune in tunes %}
+              {% include 'django_jam_app/components/tune.html' with tune=tune %}
+            {% endfor %}
+          {% endif %}
+        </div>
+      </section>
+
+
     </div>
+  </main>
 {% endblock %}
 
 

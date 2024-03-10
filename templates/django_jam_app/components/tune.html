@@ -1,0 +1,30 @@
+{% load static %}
+{% load django_jam_template_tags %}
+
+<div class="tune" data-tune-id="{{ tune.ID }}" data-logged-in-user-id="{{ request.user.id }}">
+    <div class="tune-info">
+        <p class="tune-name">{{ tune.name }}</p>
+        <p class="tune-author">by {{ tune.creator.username }}</p>
+    </div>
+
+    {% include "django_jam_app/components/play-bar.html" with tune=tune %}
+
+    <div class="tune-controls">
+        <div class="tune-likes">
+            <p><span class="tune-likes-count">{{ tune.likes }}</span> likes</p>
+
+            {% if request.user.is_authenticated %}
+            <button class="tune-like">
+                <img class="like-image" src="{% static 'images/icons/heart-outline.svg' %}" alt="Like Song">
+                <img class="unlike-image" style="display: none" src="{% static 'images/icons/heart.svg' %}" alt="Unlike Song">
+            </button>
+            {% endif %}
+        </div>
+
+        {% if user_profile|is_current_user:request.user %}
+        <button class="tune-delete">
+            <img src="{% static 'images/icons/trash.svg' %}" alt="Delete Song">
+        </button>
+        {% endif %}
+    </div>
+</div>
