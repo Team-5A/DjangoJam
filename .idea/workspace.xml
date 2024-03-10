@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d144bbc4-f6ac-477f-86b1-c4cf7c52ced0" name="Changes" comment="Feat : Dislikes Added.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/JS/tune_Like_Dislike.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/JS/tune_Like_Dislike.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/django_jam_app/tune_player.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/django_jam_app/tune_player.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/django_jam_app/tunes.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/django_jam_app/tunes.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/django_jam_app/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/django_jam_app/base.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +42,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="register" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />

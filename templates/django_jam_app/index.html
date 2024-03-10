@@ -7,6 +7,7 @@
 
 {% block head_block %}
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <script src="{% static 'js/index.js' %}" defer></script>
 {% endblock %}
 
 {% block body_block %}
@@ -20,8 +21,8 @@
 
             {% comment %} call to action {% endcomment %}
             <div class="hero-cta">
-                <form action="">
-                    <input size="20" type="text" placeholder="Username...">
+                <form id="signup-form" action="">
+                    <input id="username" name="username" size="20" type="text" placeholder="Username...">
                     <button class="button" type="submit">Sign Up</button>
                 </form>
 
