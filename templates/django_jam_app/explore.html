@@ -5,6 +5,11 @@
     Explore Page
 {% endblock %}
 
+{% block head_block %}
+    <script src="{% static 'js/tune.js' %}" defer></script>
+    <script src="{% static 'js/play-bar.js' %}" defer></script>
+{% endblock %}
+
 {% block body_block %}
     
     <h1>Explore</h1>
@@ -28,7 +33,7 @@
     <h2>Tunes</h2>
     <ul>
         {% for tune in tunes %}
-            {% include 'django_jam_app/tune_player.html' with tune=tune %}
+            {% include 'django_jam_app/components/tune.html' with tune=tune user_profile=tune.creator.userprofile %}
         {% empty %}
             <li>No tunes found</li>
         {% endfor %}
