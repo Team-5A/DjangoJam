@@ -20,8 +20,9 @@ main {
   background-color: var(--keyboard-bg);
   border: 0.25rem solid var(--keyboard-border);
   padding: 2rem;
+  padding-top: 1.25rem;
   flex-grow: 1;
-  height: 22rem;
+  height: 23rem;
   border-radius: 1.25rem;
 }
 
@@ -66,4 +67,48 @@ main {
 
 .key.active {
   background-color: var(--key-active-color) !important;
+}
+
+.keyboard-top {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  justify-content: space-between;
+  height: 2.5rem;
+  margin-bottom: 0.75rem;
+  position: relative;
+}
+
+.keyboard-logo {
+  font-size: 1.75rem;
+  font-weight: var(--bold);
+  color: var(--primary-color);
+}
+
+#keyboard-dots {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  position: absolute;
+  bottom: -0.5rem;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0.5rem;
+}
+
+#keyboard-dots .dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: var(--keyboard-border);
+  opacity: 0.4;
+  transition: all 0.15s ease;
+}
+
+#keyboard-dots .dot.active {
+  background-color: var(--dot-active-color);
+  opacity: 1;
 }

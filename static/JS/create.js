@@ -44,6 +44,7 @@ function hexToHSL(H, lightnessMultiplier = 1) {
 
 const keyboard = document.getElementById("keyboard");
 const keysContainer = document.getElementById("keys");
+const dotsContainer = document.getElementById("keyboard-dots");
 
 const noteColors = [
   "#33a8c7",
@@ -72,6 +73,7 @@ Object.keys(frequencyMap).forEach((note) => {
     ? sharpNoteColors[normalI % sharpNoteColors.length]
     : noteColorsHSL[normalI % noteColorsHSL.length];
 
+  // create key
   const key = document.createElement("button");
   key.classList.add("key");
   key.setAttribute("data-note", note);
@@ -87,16 +89,27 @@ Object.keys(frequencyMap).forEach((note) => {
 
   keysContainer.appendChild(key);
 
+  // create dot
+  const dot = document.createElement("div");
+  dot.classList.add("dot");
+  dot.setAttribute("data-note", note);
+  dot.style.setProperty("--dot-active-color", color);
+
+  dotsContainer.appendChild(dot);
+
+  // interactions
   key.addEventListener("click", (e) => {
     const oscillator = setupOscillator();
 
     // play note
     e.target.classList.add("active");
+    dot.classList.add("active");
     playNote(e.target.getAttribute("data-note"), oscillator);
 
     // stop playing note
     setTimeout(() => {
       e.target.classList.remove("active");
+      dot.classList.remove("active");
       stopPlayback(oscillator);
     }, 500);
   });
