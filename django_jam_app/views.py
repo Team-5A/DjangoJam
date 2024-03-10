@@ -204,20 +204,29 @@ def visitor_cookie_handler(request):
 
 def like_tune(request, tune_id):
     if not request.user.is_authenticated:
-        return JsonResponse({'likes': -1 })
+        return JsonResponse({'likes': -1})
 
     tune = Tune.objects.get(ID=tune_id)
     tune.likes = tune.likes + 1
+    tune.creator.userprofile.total_likes += 1
+    request.user.userprofile.self_likes = request.user.userprofile.self_likes + 1
+    request.user.userprofile.save()
+    tune.creator.userprofile.save()
     tune.save()
 
     return JsonResponse({'likes': tune.likes})
 
+
 def unlike_tune(request, tune_id):
     if not request.user.is_authenticated:
-        return JsonResponse({'likes': -1 })
+        return JsonResponse({'likes': -1})
 
     tune = Tune.objects.get(ID=tune_id)
     tune.likes = max(0, tune.likes - 1)
+    tune.creator.userprofile.total_likes = max(0, tune.creator.userprofile.total_likes - 1)
+    request.user.userprofile.self_likes = max(0, request.user.userprofile.self_likes - 1)
+    request.user.userprofile.save()
+    tune.creator.userprofile.save()
     tune.save()
 
     return JsonResponse({'likes': tune.likes})
