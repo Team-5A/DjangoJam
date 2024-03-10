@@ -81,6 +81,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "DefaultHtmlFileTemplate": "HTML File",
+    "Django Server.DjangoJam.executor": "Run",
     "Python.populate_jam.executor": "Run",
     "Python.python manage.py createsuperuser.executor": "Run",
     "Python.python manage.py makemigrations django_jam_app.executor": "Run",
@@ -227,6 +228,7 @@
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="django_jam_project.settings" />
       </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="" />
