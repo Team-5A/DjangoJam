@@ -15,6 +15,15 @@
   --error-color: #f13434;
   --error-color-light: #f226265b;
 
+  --keyboard-bg: #1a1a1a;
+  --keyboard-border: #000000;
+  --keyboard-white-key: #ffffff;
+  --keyboard-white-key-border: #d1d1d1;
+  --keyboard-white-key-active: #e4e4e4;
+  --keyboard-black-key: #03050a;
+  --keyboard-black-key-border: #282828;
+  --keyboard-black-key-active: #181b24;
+
   --side-padding: clamp(2rem, 12vw, 17rem);
 
   /* font weights */

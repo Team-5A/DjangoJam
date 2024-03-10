@@ -1,0 +1,72 @@
+main {
+  display: flex;
+  padding: 0 var(--side-padding);
+  flex-grow: 1;
+}
+
+.controls {
+  margin-top: auto;
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+  margin-bottom: 4rem;
+  width: 100%;
+}
+
+#keyboard {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: var(--keyboard-bg);
+  border: 0.25rem solid var(--keyboard-border);
+  padding: 2rem;
+  flex-grow: 1;
+  height: 22rem;
+  border-radius: 1.25rem;
+}
+
+#keys {
+  display: flex;
+  flex-direction: row;
+  margin-top: auto;
+  flex-grow: 1;
+}
+
+.key {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  background-color: var(--keyboard-white-key);
+  border: 0.15rem solid var(--keyboard-white-key-border);
+  border-radius: 0.4rem;
+  cursor: pointer;
+  height: 100%;
+  flex-grow: 1;
+  border-right: none;
+  position: relative;
+}
+
+.key:last-child {
+  border-right: 0.15rem solid var(--keyboard-white-key-border);
+}
+
+.key-sharp {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 55%;
+  width: 70%;
+  background-color: var(--keyboard-black-key);
+  border: 0.15rem solid var(--keyboard-black-key-border) !important;
+  transform: translateY(-0.4rem) translateX(50%);
+  z-index: 2;
+}
+
+.key.active {
+  background-color: var(--keyboard-white-key-active);
+}
+
+.key-sharp.active {
+  background-color: var(--keyboard-black-key-active);
+}
