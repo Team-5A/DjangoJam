@@ -128,7 +128,8 @@ def user_login(request):
             if user.is_active:
 
                 login(request, user)
-                return redirect(reverse('django_jam_app:profile', args=[user.username]))
+                lower_case_username = user.username.lower()
+                return redirect(reverse('django_jam_app:profile', args=[lower_case_username]))
             else:
 
                 return render(request, 'django_jam_app/login.html', context={
