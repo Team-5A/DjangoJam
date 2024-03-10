@@ -114,3 +114,9 @@ Object.keys(frequencyMap).forEach((note) => {
     }, 500);
   });
 });
+
+const recordButton = document.getElementById("keyboard-record-button");
+
+recordButton.addEventListener("click", () => {
+  recordButton.classList.toggle("active");
+});

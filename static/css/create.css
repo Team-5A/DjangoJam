@@ -112,3 +112,39 @@ main {
   background-color: var(--dot-active-color);
   opacity: 1;
 }
+
+.keyboard-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#keyboard-record-button {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: none;
+  border: 0.25rem solid var(--keyboard-record);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+#keyboard-record-button::before {
+  content: "";
+  position: absolute;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: var(--keyboard-record);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+#keyboard-record-button.active::before {
+  width: 2.5rem;
+  height: 2.5rem;
+}

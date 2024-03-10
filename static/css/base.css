@@ -23,6 +23,7 @@
   --keyboard-black-key: #03050a;
   --keyboard-black-key-border: #282828;
   --keyboard-black-key-active: #181b24;
+  --keyboard-record: #f83d3d;
 
   --side-padding: clamp(2rem, 12vw, 17rem);
 
