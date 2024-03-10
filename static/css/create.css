@@ -45,6 +45,7 @@ main {
   flex-grow: 1;
   border-right: none;
   position: relative;
+  transition: background-color 0.15s ease;
 }
 
 .key:last-child {
@@ -64,9 +65,5 @@ main {
 }
 
 .key.active {
-  background-color: var(--keyboard-white-key-active);
-}
-
-.key-sharp.active {
-  background-color: var(--keyboard-black-key-active);
+  background-color: var(--key-active-color) !important;
 }
