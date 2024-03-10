@@ -79,7 +79,6 @@ def register(request):
         profile_form = UserProfileForm(request.POST)
 
         if user_form.is_valid() and profile_form.is_valid():
-
             user = user_form.save()
 
             user.set_password(user.password)
@@ -225,6 +224,7 @@ def visitor_cookie_handler(request):
     request.session['visits'] = visits
 
 
+@login_required
 def save_tune(request):
     if request.method == 'POST':
         tune_input = request.POST.get('tune_input')
@@ -249,7 +249,7 @@ def like_tune(request, tune_id):
 
     return JsonResponse({'likes': tune.likes})
 
-
+@login_required
 def unlike_tune(request, tune_id):
     if not request.user.is_authenticated:
         return JsonResponse({'likes': -1})
@@ -264,7 +264,7 @@ def unlike_tune(request, tune_id):
 
     return JsonResponse({'likes': tune.likes})
 
-
+@login_required
 def delete_account(request):
     user = request.user
     if user.is_authenticated:
@@ -274,7 +274,7 @@ def delete_account(request):
 
     return redirect(reverse('django_jam_app:index'))
 
-
+@login_required
 def delete_tune(request, tuneid):
     tune = get_object_or_404(Tune, ID=tuneid)
 
