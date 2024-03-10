@@ -18,7 +18,7 @@
         <div class="content">
             <form id="search-form" action="">
                 <div class="search-bar">
-                    <input id="search-query" name="query" size="10" type="text" placeholder="Search...">
+                    <input id="search-query" name="query" size="10" type="text" placeholder="Search..." required>
 
                     <button class="button" type="submit">
                         <img src="{% static 'images/icons/search.svg' %}" alt="Search">
@@ -32,6 +32,11 @@
                     </select>
                 </div>
             </form>
+
+            <div id="top-5">
+                <button id="top-5-users" class="button button--secondary" data-category="users">Top 5 Users</button>
+                <button id="top-5-tunes" class="button button--secondary" data-category="tunes">Top 5 Songs</button>
+            </div>
 
             {% comment %} tunes list {% endcomment %}
             <section class="explore-tune-list">

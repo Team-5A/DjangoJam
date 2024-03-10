@@ -171,6 +171,25 @@ def explore(request):
             tunes = Tune.objects.filter(creator__username__icontains=query)
         elif category == 'by-tune':
             tunes = Tune.objects.filter(name__icontains=query)
+    
+    elif request.method == "GET" and 'top-5' in request.GET: 
+        top5_category = request.GET.get('top-5')
+        if top5_category not in ['users', 'tunes']:
+            top5_category = 'tunes'
+        
+        if top5_category == 'users':
+            tunes_temp = Tune.objects.order_by('-creator__userprofile__total_likes')
+
+            encountered_users = set()
+            for tune in tunes_temp:
+                if len(encountered_users) > 5:
+                    break
+
+                encountered_users.add(tune.creator)
+                tunes.append(tune)
+                
+        else:
+            tunes = Tune.objects.order_by('-likes')[:5]
 
     return render(request, 'django_jam_app/explore.html',
                   {'form': form, 'tunes': tunes})

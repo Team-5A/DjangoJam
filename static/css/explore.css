@@ -10,7 +10,6 @@ main {
 .content {
   display: flex;
   flex-direction: column;
-  gap: 1.75rem;
   align-items: center;
   width: 100%;
   max-width: 44rem;
@@ -62,6 +61,7 @@ main {
   flex-direction: column;
   gap: 1.25rem;
   width: 100%;
+  margin-top: 1.75rem;
 }
 
 .tune-list-title {
@@ -90,4 +90,17 @@ main {
   flex-direction: column;
   gap: 1.25rem;
   width: 100%;
+}
+
+#top-5 {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin-left: auto;
+  margin-top: 1rem;
+}
+
+#top-5 button {
+  height: 3rem;
+  font-size: 0.85rem;
 }
