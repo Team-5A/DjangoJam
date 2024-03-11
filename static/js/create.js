@@ -73,7 +73,7 @@ const playBar = document.querySelector(".play-bar");
 const tempoInput = document.getElementById("song-tempo");
 
 tempoInput.addEventListener("input", (e) => {
-  if (playBar.querySelector(".play-icon").style.display === "none") {
+  if (playBar.getAttribute("data-song-in-progress") === "true") {
     // currently playing
     playBar.setAttribute("data-force-stop", "true");
   }

@@ -52,6 +52,7 @@ playBars.forEach((playBar) => {
     }
 
     if (controls.isStopped()) {
+      playBar.setAttribute("data-song-in-progress", "false");
       controls = null;
       barTrack.style.width = "0%";
       currentTime.textContent = "0:00";
@@ -80,6 +81,7 @@ playBars.forEach((playBar) => {
         controls.play();
       } else {
         controls = playSong(notes, bpm);
+        playBar.setAttribute("data-song-in-progress", "true");
 
         // song playing tell server (excluding create page)
         if (!location.href.includes("/create/"))
