@@ -64,6 +64,7 @@ def create(request):
         name = json_data['name']
         notes = json_data['notes']
         bpm = json_data['bpm']
+        visibility = json_data['visibility']
 
         if Tune.objects.filter(name=name).exists() or Tune.objects.filter(slug=slugify(name)).exists():
             return JsonResponse({'error': 'A tune with this name already exists.'}, status=400)
@@ -73,8 +74,10 @@ def create(request):
             return JsonResponse({'error': 'The tune must have at most notes string of length 64.'}, status=400)
         elif bpm <= 0:
             return JsonResponse({'error': 'The tune must have a positive BPM.'}, status=400)
+        elif visibility not in ['public', 'private']:
+            return JsonResponse({'error': 'The tune must have a valid visibility.'}, status=400)
         
-        tune = Tune.objects.create(name=name, notes=notes, beats_per_minute=bpm, creator=request.user, slug=slugify(name))
+        tune = Tune.objects.create(name=name, notes=notes, beats_per_minute=bpm, creator=request.user, slug=slugify(name), public=visibility == 'public')
         return JsonResponse({'tune_id': tune.ID, 'tune_slug': tune.slug, 'user_slug': request.user.userprofile.slug })
 
 
@@ -202,6 +205,14 @@ def explore(request):
                 
         else:
             tunes = Tune.objects.order_by('-likes')[:5]
+    
+    # remove private tunes if the user is not the creator
+    temp_tunes = tunes
+    tunes = []
+
+    for tune in temp_tunes:
+        if tune.public or tune.creator == request.user:
+            tunes.append(tune)
 
     return render(request, 'django_jam_app/explore.html',
                   {'form': form, 'tunes': tunes})
