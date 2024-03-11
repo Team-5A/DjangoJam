@@ -265,10 +265,21 @@ def like_tune(request, tune_id):
 
     tune = Tune.objects.get(ID=tune_id)
     tune.likes = tune.likes + 1
-    tune.creator.userprofile.total_likes += 1
-    request.user.userprofile.self_likes += 1
 
     tune.creator.userprofile.save()
+
+    if tune.creator == request.user:
+        request.user.userprofile.self_likes += 1 
+        request.user.userprofile.total_likes += 1 
+
+        request.user.userprofile.save()
+    else:
+        tune.creator.userprofile.total_likes += 1
+        request.user.userprofile.self_likes += 1
+
+        request.user.userprofile.save()
+        tune.creator.userprofile.save()
+
     request.user.userprofile.save()
 
     tune.save()
@@ -282,11 +293,19 @@ def unlike_tune(request, tune_id):
 
     tune = Tune.objects.get(ID=tune_id)
     tune.likes = max(0, tune.likes - 1)
-    tune.creator.userprofile.total_likes = max(0, tune.creator.userprofile.total_likes - 1)
-    request.user.userprofile.self_likes = max(0, request.user.userprofile.self_likes - 1)
 
-    tune.creator.userprofile.save()
-    request.user.userprofile.save()
+
+    if tune.creator == request.user:
+        request.user.userprofile.self_likes = max(0, request.user.userprofile.self_likes - 1) 
+        request.user.userprofile.total_likes = max(0, request.user.userprofile.total_likes - 1)
+
+        request.user.userprofile.save()
+    else:
+        tune.creator.userprofile.total_likes = max(0, tune.creator.userprofile.total_likes - 1)
+        request.user.userprofile.self_likes = max(0, request.user.userprofile.self_likes - 1)
+
+        request.user.userprofile.save()
+        tune.creator.userprofile.save()
 
     tune.save()
 
