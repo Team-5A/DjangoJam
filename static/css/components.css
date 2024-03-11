@@ -164,6 +164,16 @@
   white-space: nowrap;
 }
 
+.tune-author a {
+  text-decoration: underline;
+  color: var(--accent-color);
+  transition: 0.3s color ease;
+}
+
+.tune-author a:hover {
+  color: var(--accent-color-bright);
+}
+
 .tune-controls {
   display: flex;
   flex-direction: row;
