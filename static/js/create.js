@@ -45,6 +45,7 @@ function hexToHSL(H, lightnessMultiplier = 1) {
 const keyboard = document.getElementById("keyboard");
 const keysContainer = document.getElementById("keys");
 const dotsContainer = document.getElementById("keyboard-dots");
+const noteExplosionContainer = document.getElementById("note-explosion-container");
 
 const noteColors = [
   "#33a8c7",
@@ -81,6 +82,8 @@ Object.keys(frequencyMap).forEach((note) => {
   }
 
   const i = note.includes("#") ? sharpI++ : normalI++;
+  const normalISaved = normalI;
+
   const color = note.includes("#")
     ? sharpNoteColors[normalI % sharpNoteColors.length]
     : noteColorsHSL[normalI % noteColorsHSL.length];
@@ -134,6 +137,23 @@ Object.keys(frequencyMap).forEach((note) => {
 
       playBar.setAttribute("data-notes", notes.join(","));
     }
+
+    // create note explosion
+    const noteExplosion = document.createElement("div");
+    noteExplosion.classList.add("note-explosion");
+    noteExplosion.style.setProperty("--note-explosion-color", color);
+
+    const x = (normalISaved / normalI) * keyboard.clientWidth;
+    const y = noteExplosionContainer.clientHeight * 0.5;
+
+    noteExplosion.style.left = `${x}px`;
+    noteExplosion.style.top = `${y}px`;
+
+    noteExplosion.addEventListener("animationend", () => {
+      noteExplosion.remove();
+    });
+
+    noteExplosionContainer.appendChild(noteExplosion);
 
     // stop playing note
     setTimeout(() => {
