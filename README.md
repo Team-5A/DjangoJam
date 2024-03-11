@@ -11,10 +11,7 @@
 
 # Setup
 ~~~
-python manage.py makemigrations django_jam_app
-python manage.py migrate
-python populate_jam.py
-python manage.py createsuperuser
+python migrate.py
 
 # Folllow instrutions to gain admin user.
 

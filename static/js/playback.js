@@ -1,4 +1,4 @@
-audioContext = new (window.AudioContext || window.webkitAudioContext)();
+audioContext = null;
 
 // Map the note to its corresponding frequency
 var frequencyMap = {
@@ -43,41 +43,110 @@ function playSong(notes, beatsPerMinute) {
   const oscillator = setupOscillator();
   const noteArray = notes.split(",");
   const noteDuration = 60000 / beatsPerMinute;
-  let delay = 0;
+  let paused = false;
+  let noteI = 0;
+  let stopped = false;
 
-  noteArray.forEach((note) => {
-    setTimeout(() => playNote(note, oscillator), delay);
-    delay += noteDuration;
-  });
+  const interval = setInterval(() => {
+    if (paused || stopped) {
+      return;
+    }
 
-  setTimeout(() => stopPlayback(oscillator), delay);
+    if (noteI >= noteArray.length) {
+      clearInterval(interval);
+      stopPlayback(oscillator);
+      stopped = true;
+      return;
+    }
+
+    const note = noteArray[noteI];
+    noteI++;
+
+    playNote(note, oscillator);
+  }, noteDuration);
+
+  return {
+    pause: () => {
+      paused = true;
+      stopPlayback(oscillator, null, false);
+    },
+    play: () => {
+      paused = false;
+    },
+    stop: () => {
+      if (stopped) return;
+
+      clearInterval(interval);
+      stopPlayback(oscillator);
+      stopped = true;
+    },
+    isStopped: () => {
+      return stopped;
+    },
+    isPaused: () => {
+      return paused;
+    },
+    getTime: () => {
+      return noteI * noteDuration;
+    },
+  };
 }
 
-function setupOscillator() {
-  const oscillator = audioContext.createOscillator();
-  const gainNode = audioContext.createGain();
+const oscillatorMap = new Map();
 
-  oscillator.type = "triangle";
+function setupOscillator() {
+  const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  const gainNode = audioContext.createGain();
+  const oscillator = audioContext.createOscillator();
+
+  oscillatorMap.set(oscillator, [audioContext, gainNode]);
+
+  oscillator.type = "sawtooth";
   oscillator.connect(gainNode);
   gainNode.connect(audioContext.destination);
 
-  gainNode.gain.setValueAtTime(0.1, 0);
+  gainNode.gain.value = 0.1;
 
   oscillator.start();
   return oscillator;
 }
 
 function playNote(note, oscillator) {
-  if (note in frequencyMap) {
+  const audioContext = oscillatorMap.get(oscillator)[0];
+
+  if (frequencyMap.hasOwnProperty(note)) {
     oscillator.frequency.setValueAtTime(frequencyMap[note], audioContext.currentTime);
   } else if (note.trim() === "") {
-    oscillator.frequency.setValueAtTime(0, audioContext.currentTime);
+    oscillator.frequency.setValueAtTime(0.1, audioContext.currentTime);
   } else {
     oscillator.stop();
     throw new Error("Invalid note: " + note);
   }
 }
 
-function stopPlayback(oscillator, gainNode) {
+function stopPlayback(oscillator, gainNode, destroyContext = true) {
+  const audioContext = oscillatorMap.get(oscillator)[0];
+
+  if (destroyContext) {
+    audioContext.close();
+    oscillatorMap.delete(oscillator);
+  }
+
   oscillator.frequency.setValueAtTime(0, audioContext.currentTime);
+}
+
+function calculateDuration(notes, beatsPerMinute) {
+  const noteArray = notes.split(",");
+  const noteDuration = 60000 / beatsPerMinute;
+
+  return noteArray.length * noteDuration;
+}
+
+function durationToString(duration) {
+  const minutes = Math.floor(duration / 60000);
+  const seconds = ((duration % 60000) / 1000).toFixed(0);
+
+  if (minutes === Infinity || seconds === Infinity || isNaN(minutes) || isNaN(seconds)) return "0:00";
+
+  return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
 }

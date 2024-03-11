@@ -1,0 +1,90 @@
+{% extends 'django_jam_app/base.html' %}
+{% load static %}
+
+{% block title_block %}
+    Add a new Tune
+{% endblock %}
+
+{% block head_block %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/create.css' %}">
+
+    <script src="{% static 'js/create.js' %}" defer></script>
+    <script src="{% static 'js/play-bar.js' %}" defer></script>
+{% endblock %}
+
+{% block body_block %}
+<main>
+    <div id="note-explosion-container">
+
+    </div>
+
+    <div class="controls">
+        <div id="keyboard">
+            <div class="keyboard-top">
+                <h1 class="keyboard-logo">DjangoJam</h1>
+
+                <div id="keyboard-dots"></div>
+
+                <div class="keyboard-buttons">
+                    <button class="button" id="rest-button">
+                        rest
+                    </button>
+
+                    <button id="keyboard-record-button">
+                    </button>
+                </div>
+            </div>
+
+            <div id="keys">
+                <div id="sharp-keys"></div>
+            </div>
+        </div>
+
+        <div class="control-panel">
+            <form id="create-form" class="control-panel-input" action="">
+                {% csrf_token %}
+
+                <input type="text" class="input" id="song-name" name="name" placeholder="Song Name..." size="10">
+
+                {% if user.is_authenticated %}
+                    <button type="submit" class="button button--secondary">
+                        Publish
+                    </button>
+                {% endif %}
+
+            </form>
+
+            <div class="control-panel-settings">
+                <div class="control-panel-visibility">
+                    <div class="visibility-container">
+                        <input class="radio" type="radio" id="public" name="visibility" value="public" checked>
+                        <div>
+                            <label for="public">Public</label>
+                            <p>Anyone can listen to this track</p>
+                        </div>
+                    </div>
+
+                    <div class="visibility-container">
+                        <input class="radio" type="radio" id="private" name="visibility" value="private">
+                        <div>
+                            <label for="private">Private</label>
+                            <p>Only you can listen to this track<p>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="control-panel-tempo">
+                    <label for="tempo">Song Tempo</label>
+                    <input type="number" id="song-tempo" class="number-input" name="tempo" value="120">
+                </div>
+            </div>
+            
+            <div class="control-panel-play">
+                {% include 'django_jam_app/components/play-bar.html' with tune=tune %}
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

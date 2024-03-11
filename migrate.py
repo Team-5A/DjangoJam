@@ -7,4 +7,5 @@ os.system("python manage.py makemigrations django_jam_app")
 os.system("python manage.py migrate")
 os.system("python create_super_user.py")
 
-os.system("python populate_jam.py")
+os.system("python population_script.py")
+

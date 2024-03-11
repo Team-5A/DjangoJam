@@ -18,9 +18,14 @@ def count_tunes(user):
     return Tune.objects.filter(creator=user).count()
 
 
-@register.simple_tag(name='get_tunes_by_user')    # Get tunes by user
-def get_tunes_by_user(user):
-    return Tune.objects.filter(creator=user)
+@register.simple_tag(name='get_tunes_by_user', takes_context=True)    # Get tunes by user
+def get_tunes_by_user(context, user):
+    loggedInUserId = context['user'].id
+
+    if user.id == loggedInUserId:
+        return Tune.objects.filter(creator=user)
+    else:
+        return Tune.objects.filter(creator=user, public=True)
 
 @register.simple_tag(name='has_tunes')                # Count tunes by user
 def has_tunes(user):
