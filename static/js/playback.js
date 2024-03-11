@@ -1,4 +1,4 @@
-audioContext = new (window.AudioContext || window.webkitAudioContext)();
+audioContext = null;
 
 // Map the note to its corresponding frequency
 var frequencyMap = {
@@ -93,6 +93,10 @@ function playSong(notes, beatsPerMinute) {
 }
 
 function setupOscillator() {
+  if (!audioContext) {
+    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  }
+
   const oscillator = audioContext.createOscillator();
   const gainNode = audioContext.createGain();
 
@@ -100,7 +104,7 @@ function setupOscillator() {
   oscillator.connect(gainNode);
   gainNode.connect(audioContext.destination);
 
-  gainNode.gain.setValueAtTime(0.1, 0);
+  gainNode.gain.value = 0.1;
 
   oscillator.start();
   return oscillator;
