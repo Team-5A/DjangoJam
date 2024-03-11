@@ -317,3 +317,5 @@ def played_tune(request):
     if request.user.is_authenticated:
         request.user.userprofile.number_of_tunes_played += 1
         request.user.userprofile.save()
+    
+    return HttpResponse(status=200)
