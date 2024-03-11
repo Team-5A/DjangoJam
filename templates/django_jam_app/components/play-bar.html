@@ -1,6 +1,6 @@
 {% load static %}
 
-<div class="play-bar">
+<div class="play-bar" data-notes="{{ tune.notes }}" data-bpm="{{ tune.bpm }}">
   <button class="toggle-play">
     <img class="play-icon" src="{% static 'images/icons/play.svg' %}" alt="Play Song" />
     <img

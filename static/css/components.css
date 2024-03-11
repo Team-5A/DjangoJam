@@ -243,7 +243,6 @@
   flex-grow: 1;
   height: 0.5rem;
   position: relative;
-  cursor: pointer;
 }
 
 .progress-bar div {
@@ -332,9 +331,27 @@
 .number-input {
   background-color: var(--keyboard-bg);
   border-radius: 0.4rem;
-  padding: 0.5rem;
+  padding: 0.75rem 0.5rem;
   border: none;
   outline: none !important;
   color: var(--text-color);
   font-weight: var(--semibold);
+  width: 6rem;
+}
+
+.number-input::-webkit-inner-spin-button {
+  appearance: none;
+  opacity: 0.5;
+  width: 2rem;
+  height: 2rem;
+  background-image: url("/static/images/icons/range.svg");
+  background-size: 1rem;
+  background-repeat: no-repeat;
+  background-position-x: 80%;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.number-input::-webkit-inner-spin-button:hover {
+  opacity: 1;
 }

@@ -43,20 +43,58 @@ function playSong(notes, beatsPerMinute) {
   const oscillator = setupOscillator();
   const noteArray = notes.split(",");
   const noteDuration = 60000 / beatsPerMinute;
-  let delay = 0;
+  let paused = false;
+  let noteI = 0;
+  let stopped = false;
 
-  noteArray.forEach((note) => {
-    setTimeout(() => playNote(note, oscillator), delay);
-    delay += noteDuration;
-  });
+  const interval = setInterval(() => {
+    if (paused || stopped) {
+      return;
+    }
 
-  setTimeout(() => stopPlayback(oscillator), delay);
+    if (noteI >= noteArray.length) {
+      clearInterval(interval);
+      stopPlayback(oscillator);
+      stopped = true;
+      return;
+    }
+
+    const note = noteArray[noteI];
+    noteI++;
+
+    playNote(note, oscillator);
+  }, noteDuration);
+
+  return {
+    pause: () => {
+      paused = true;
+      stopPlayback(oscillator);
+    },
+    play: () => {
+      paused = false;
+    },
+    stop: () => {
+      if (stopped) return;
+
+      clearInterval(interval);
+      stopPlayback(oscillator);
+      stopped = true;
+    },
+    isStopped: () => {
+      return stopped;
+    },
+    isPaused: () => {
+      return paused;
+    },
+    getTime: () => {
+      return noteI * noteDuration;
+    },
+  };
 }
-
-const gainNode = audioContext.createGain();
 
 function setupOscillator() {
   const oscillator = audioContext.createOscillator();
+  const gainNode = audioContext.createGain();
 
   oscillator.type = "sawtooth";
   oscillator.connect(gainNode);
@@ -69,8 +107,7 @@ function setupOscillator() {
 }
 
 function playNote(note, oscillator) {
-  if (note in frequencyMap) {
-    gainNode.gain.exponentialRampToValueAtTime(1, audioContext.currentTime + 0.5);
+  if (frequencyMap.hasOwnProperty(note)) {
     oscillator.frequency.setValueAtTime(frequencyMap[note], audioContext.currentTime);
   } else if (note.trim() === "") {
     oscillator.frequency.setValueAtTime(0.1, audioContext.currentTime);
@@ -82,4 +119,20 @@ function playNote(note, oscillator) {
 
 function stopPlayback(oscillator, gainNode) {
   oscillator.frequency.setValueAtTime(0, audioContext.currentTime);
+}
+
+function calculateDuration(notes, beatsPerMinute) {
+  const noteArray = notes.split(",");
+  const noteDuration = 60000 / beatsPerMinute;
+
+  return noteArray.length * noteDuration;
+}
+
+function durationToString(duration) {
+  const minutes = Math.floor(duration / 60000);
+  const seconds = ((duration % 60000) / 1000).toFixed(0);
+
+  if (minutes === Infinity || seconds === Infinity || isNaN(minutes) || isNaN(seconds)) return "0:00";
+
+  return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
 }

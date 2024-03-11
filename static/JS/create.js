@@ -63,6 +63,18 @@ const sharpNoteColors = noteColors.map((color) => hexToHSL(color, 0.3));
 let normalI = 0;
 let sharpI = 0;
 
+let notes = [];
+let isRecording = false;
+
+const playBar = document.querySelector(".play-bar");
+const tempoInput = document.getElementById("song-tempo");
+
+tempoInput.addEventListener("input", (e) => {
+  playBar.setAttribute("data-bpm", e.target.value);
+});
+
+playBar.setAttribute("data-bpm", tempoInput.value);
+
 Object.keys(frequencyMap).forEach((note) => {
   if (note.includes("b")) {
     return;
@@ -111,6 +123,18 @@ Object.keys(frequencyMap).forEach((note) => {
     dot.classList.add("active");
     playNote(e.target.getAttribute("data-note"), oscillator);
 
+    if (isRecording) {
+      notes.push(e.target.getAttribute("data-note"));
+
+      if (isRecording && notes.join(",").length > 64) {
+        notes.pop();
+        isRecording = false;
+        recordButton.classList.remove("active");
+      }
+
+      playBar.setAttribute("data-notes", notes.join(","));
+    }
+
     // stop playing note
     setTimeout(() => {
       e.target.classList.remove("active");
@@ -124,5 +148,10 @@ Object.keys(frequencyMap).forEach((note) => {
 const recordButton = document.getElementById("keyboard-record-button");
 
 recordButton.addEventListener("click", () => {
+  isRecording = !isRecording;
   recordButton.classList.toggle("active");
+
+  if (isRecording) {
+    notes = [];
+  }
 });
