@@ -200,6 +200,7 @@ recordButton.addEventListener("click", () => {
 
   if (isRecording) {
     notes = [];
+    playBar.setAttribute("data-force-stop", "true");
   }
 });
 
