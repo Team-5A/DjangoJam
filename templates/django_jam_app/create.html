@@ -6,8 +6,10 @@
 {% endblock %}
 
 {% block head_block %}
-    <script src="{% static 'js/create.js' %}" defer></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/create.css' %}">
+
+    <script src="{% static 'js/create.js' %}" defer></script>
+    <script src="{% static 'js/play-bar.js' %}" defer></script>
 {% endblock %}
 
 {% block body_block %}
@@ -27,6 +29,48 @@
 
             <div id="keys">
                 <div id="sharp-keys"></div>
+            </div>
+        </div>
+
+        <div class="control-panel">
+            <form class="control-panel-input" action="">
+                <input type="text" class="input" name="name" placeholder="Song Name..." size="10">
+
+                <button type="submit" class="button button--secondary">
+                    Publish
+                </button>
+
+            </form>
+
+            <div class="control-panel-settings">
+                <div class="control-panel-visibility">
+                    <div class="visibility-container">
+                        <input class="radio" type="radio" id="public" name="visibility" value="public" checked>
+                        <div>
+                            <label for="public">Public</label>
+                            <p>Anyone can listen to this track</p>
+                        </div>
+                    </div>
+
+                    <div class="visibility-container">
+                        <input class="radio" type="radio" id="private" name="visibility" value="private">
+                        <div>
+                            <label for="private">Private</label>
+                            <p>Only you can listen to this track<p>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="control-panel-tempo">
+                    <label for="tempo">Song Tempo</label>
+                    <input type="number" class="number-input" name="tempo" value="120">
+                </div>
+            </div>
+            
+            <div class="control-panel-play">
+                {% include 'django_jam_app/components/play-bar.html' with tune=tune %}
             </div>
         </div>
     </div>

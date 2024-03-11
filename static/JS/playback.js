@@ -53,11 +53,12 @@ function playSong(notes, beatsPerMinute) {
   setTimeout(() => stopPlayback(oscillator), delay);
 }
 
+const gainNode = audioContext.createGain();
+
 function setupOscillator() {
   const oscillator = audioContext.createOscillator();
-  const gainNode = audioContext.createGain();
 
-  oscillator.type = "triangle";
+  oscillator.type = "sawtooth";
   oscillator.connect(gainNode);
   gainNode.connect(audioContext.destination);
 
@@ -69,9 +70,10 @@ function setupOscillator() {
 
 function playNote(note, oscillator) {
   if (note in frequencyMap) {
+    gainNode.gain.exponentialRampToValueAtTime(1, audioContext.currentTime + 0.5);
     oscillator.frequency.setValueAtTime(frequencyMap[note], audioContext.currentTime);
   } else if (note.trim() === "") {
-    oscillator.frequency.setValueAtTime(0, audioContext.currentTime);
+    oscillator.frequency.setValueAtTime(0.1, audioContext.currentTime);
   } else {
     oscillator.stop();
     throw new Error("Invalid note: " + note);

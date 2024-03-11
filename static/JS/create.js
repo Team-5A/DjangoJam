@@ -117,7 +117,7 @@ Object.keys(frequencyMap).forEach((note) => {
       e.target.setAttribute("data-playing", "false");
       dot.classList.remove("active");
       stopPlayback(oscillator);
-    }, 500);
+    }, 400);
   });
 });
 
