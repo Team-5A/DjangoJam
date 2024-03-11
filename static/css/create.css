@@ -48,6 +48,7 @@ main {
   border-right: none;
   position: relative;
   transition: background-color 0.15s ease;
+  -webkit-user-drag: none;
 }
 
 .key:last-child {

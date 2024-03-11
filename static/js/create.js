@@ -71,10 +71,29 @@ const playBar = document.querySelector(".play-bar");
 const tempoInput = document.getElementById("song-tempo");
 
 tempoInput.addEventListener("input", (e) => {
+  if (playBar.querySelector(".play-icon").style.display === "none") {
+    // currently playing
+    playBar.setAttribute("data-force-stop", "true");
+  }
+
   playBar.setAttribute("data-bpm", e.target.value);
 });
 
 playBar.setAttribute("data-bpm", tempoInput.value);
+
+let isMouseDown = false;
+
+window.addEventListener("mousedown", (e) => {
+  isMouseDown = true;
+});
+
+window.addEventListener("mouseup", (e) => {
+  isMouseDown = false;
+});
+
+window.addEventListener("blur", (e) => {
+  isMouseDown = false;
+});
 
 Object.keys(frequencyMap).forEach((note) => {
   if (note.includes("b")) {
@@ -113,8 +132,8 @@ Object.keys(frequencyMap).forEach((note) => {
   dotsContainer.appendChild(dot);
 
   // interactions
-  key.addEventListener("click", (e) => {
-    if (e.target.getAttribute("data-playing") === "true") {
+  const play = (e) => {
+    if (e.target.getAttribute("data-playing") === "true" || !isMouseDown) {
       return;
     }
 
@@ -162,6 +181,12 @@ Object.keys(frequencyMap).forEach((note) => {
       dot.classList.remove("active");
       stopPlayback(oscillator);
     }, 400);
+  };
+
+  key.addEventListener("mousemove", play);
+  key.addEventListener("mousedown", (e) => {
+    isMouseDown = true;
+    play(e);
   });
 });
 

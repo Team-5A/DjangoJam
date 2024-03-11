@@ -31,6 +31,11 @@ playBars.forEach((playBar) => {
   const updatePlaying = () => {
     if (!controls) return;
 
+    if (playBar.getAttribute("data-force-stop") === "true") {
+      controls.stop();
+      playBar.setAttribute("data-force-stop", "false");
+    }
+
     update();
 
     currentTime.textContent = durationToString(controls.getTime());

@@ -92,13 +92,15 @@ function playSong(notes, beatsPerMinute) {
   };
 }
 
+gainNode = null;
+
 function setupOscillator() {
   if (!audioContext) {
     audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    gainNode = audioContext.createGain();
   }
 
   const oscillator = audioContext.createOscillator();
-  const gainNode = audioContext.createGain();
 
   oscillator.type = "sawtooth";
   oscillator.connect(gainNode);
@@ -111,6 +113,8 @@ function setupOscillator() {
 }
 
 function playNote(note, oscillator) {
+  gainNode.gain.value = 0.1;
+
   if (frequencyMap.hasOwnProperty(note)) {
     oscillator.frequency.setValueAtTime(frequencyMap[note], audioContext.currentTime);
   } else if (note.trim() === "") {
