@@ -51,7 +51,7 @@ playBars.forEach((playBar) => {
     }
   };
 
-  setInterval(updatePlaying, 1000);
+  setInterval(updatePlaying, 500);
 
   togglePlayButton.addEventListener("click", () => {
     update();
