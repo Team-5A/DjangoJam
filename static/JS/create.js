@@ -126,7 +126,7 @@ Object.keys(frequencyMap).forEach((note) => {
     if (isRecording) {
       notes.push(e.target.getAttribute("data-note"));
 
-      if (isRecording && notes.join(",").length > 64) {
+      if (notes.join(",").length > 64) {
         notes.pop();
         isRecording = false;
         recordButton.classList.remove("active");
@@ -202,5 +202,21 @@ createForm.addEventListener("submit", async (e) => {
     window.location.href = `/django_jam_app/profile/${data.user_slug}/`;
   } catch (error) {
     alert(error);
+  }
+});
+
+const restButton = document.getElementById("rest-button");
+
+restButton.addEventListener("click", () => {
+  if (isRecording) {
+    notes.push("");
+
+    if (notes.join(",").length > 64) {
+      notes.pop();
+      isRecording = false;
+      recordButton.classList.remove("active");
+    }
+
+    playBar.setAttribute("data-notes", notes.join(","));
   }
 });

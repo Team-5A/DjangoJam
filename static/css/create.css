@@ -116,7 +116,7 @@ main {
 .keyboard-buttons {
   display: flex;
   flex-direction: row;
-  gap: 1rem;
+  gap: 1.25rem;
   justify-content: flex-end;
   align-items: center;
 }
