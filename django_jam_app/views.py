@@ -70,8 +70,8 @@ def create(request):
             return JsonResponse({'error': 'A tune with this name already exists.'}, status=400)
         elif len(notes) == 0:
             return JsonResponse({'error': 'The tune must have at least one note.'}, status=400)
-        elif len(notes) > 64:
-            return JsonResponse({'error': 'The tune must have at most notes string of length 64.'}, status=400)
+        elif len(notes) > 256: # 256 is max notes length from model
+            return JsonResponse({'error': 'The tune must have at most notes string of length 256.'}, status=400)
         elif bpm <= 0:
             return JsonResponse({'error': 'The tune must have a positive BPM.'}, status=400)
         elif visibility not in ['public', 'private']:

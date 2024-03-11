@@ -42,6 +42,8 @@ function hexToHSL(H, lightnessMultiplier = 1) {
   return "hsl(" + h + "," + s + "%," + l + "%)";
 }
 
+const MAX_NOTES = 256;
+
 const keyboard = document.getElementById("keyboard");
 const keysContainer = document.getElementById("keys");
 const dotsContainer = document.getElementById("keyboard-dots");
@@ -148,7 +150,7 @@ Object.keys(frequencyMap).forEach((note) => {
     if (isRecording) {
       notes.push(e.target.getAttribute("data-note"));
 
-      if (notes.join(",").length > 64) {
+      if (notes.join(",").length > MAX_NOTES) {
         notes.pop();
         isRecording = false;
         recordButton.classList.remove("active");
@@ -256,7 +258,7 @@ restButton.addEventListener("click", () => {
   if (isRecording) {
     notes.push("");
 
-    if (notes.join(",").length > 64) {
+    if (notes.join(",").length > MAX_NOTES) {
       notes.pop();
       isRecording = false;
       recordButton.classList.remove("active");
