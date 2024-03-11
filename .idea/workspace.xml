@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d144bbc4-f6ac-477f-86b1-c4cf7c52ced0" name="Changes" comment="Feat : Dislikes Added.">
+      <change afterPath="$PROJECT_DIR$/create_super_user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/populate_jam.py" beforeDir="false" afterPath="$PROJECT_DIR$/populate_jam.py" afterDir="false" />
     </list>
@@ -18,6 +19,7 @@
       <list>
         <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -105,7 +107,7 @@
     "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Python.populate_jam">
     <configuration name="populate_jam" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="DjangoJam" />
@@ -383,7 +385,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709909025323</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Chore : Re pull request for population.py update. Due to workflow issues">
+      <option name="closed" value="true" />
+      <created>1710109891662</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1710109891662</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -412,6 +422,7 @@
     <MESSAGE value="Feat : Got Likes working. Fraser Levack." />
     <MESSAGE value="Feat : Likes updated in profile." />
     <MESSAGE value="Feat : Dislikes Added." />
-    <option name="LAST_COMMIT_MESSAGE" value="Feat : Dislikes Added." />
+    <MESSAGE value="Chore : Re pull request for population.py update. Due to workflow issues" />
+    <option name="LAST_COMMIT_MESSAGE" value="Chore : Re pull request for population.py update. Due to workflow issues" />
   </component>
 </project>
