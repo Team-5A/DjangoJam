@@ -68,7 +68,7 @@ function playSong(notes, beatsPerMinute) {
   return {
     pause: () => {
       paused = true;
-      stopPlayback(oscillator);
+      stopPlayback(oscillator, null, false);
     },
     play: () => {
       paused = false;
@@ -92,15 +92,14 @@ function playSong(notes, beatsPerMinute) {
   };
 }
 
-gainNode = null;
+const oscillatorMap = new Map();
 
 function setupOscillator() {
-  if (!audioContext) {
-    audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    gainNode = audioContext.createGain();
-  }
-
+  const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  const gainNode = audioContext.createGain();
   const oscillator = audioContext.createOscillator();
+
+  oscillatorMap.set(oscillator, [audioContext, gainNode]);
 
   oscillator.type = "sawtooth";
   oscillator.connect(gainNode);
@@ -113,7 +112,7 @@ function setupOscillator() {
 }
 
 function playNote(note, oscillator) {
-  gainNode.gain.value = 0.1;
+  const audioContext = oscillatorMap.get(oscillator)[0];
 
   if (frequencyMap.hasOwnProperty(note)) {
     oscillator.frequency.setValueAtTime(frequencyMap[note], audioContext.currentTime);
@@ -125,7 +124,14 @@ function playNote(note, oscillator) {
   }
 }
 
-function stopPlayback(oscillator, gainNode) {
+function stopPlayback(oscillator, gainNode, destroyContext = true) {
+  const audioContext = oscillatorMap.get(oscillator)[0];
+
+  if (destroyContext) {
+    audioContext.close();
+    oscillatorMap.delete(oscillator);
+  }
+
   oscillator.frequency.setValueAtTime(0, audioContext.currentTime);
 }
 
