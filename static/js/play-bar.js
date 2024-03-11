@@ -78,6 +78,10 @@ playBars.forEach((playBar) => {
         controls.play();
       } else {
         controls = playSong(notes, bpm);
+
+        // song playing tell server (excluding create page)
+        if (!location.href.includes("/create/"))
+          fetch("/django_jam_app/played_tune/").catch((error) => console.error(error));
       }
 
       updatePlaying();

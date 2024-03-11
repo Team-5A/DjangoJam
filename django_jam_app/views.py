@@ -266,9 +266,11 @@ def like_tune(request, tune_id):
     tune = Tune.objects.get(ID=tune_id)
     tune.likes = tune.likes + 1
     tune.creator.userprofile.total_likes += 1
-    request.user.userprofile.self_likes = request.user.userprofile.self_likes + 1
-    request.user.userprofile.save()
+    request.user.userprofile.self_likes += 1
+
     tune.creator.userprofile.save()
+    request.user.userprofile.save()
+
     tune.save()
 
     return JsonResponse({'likes': tune.likes})
@@ -282,8 +284,10 @@ def unlike_tune(request, tune_id):
     tune.likes = max(0, tune.likes - 1)
     tune.creator.userprofile.total_likes = max(0, tune.creator.userprofile.total_likes - 1)
     request.user.userprofile.self_likes = max(0, request.user.userprofile.self_likes - 1)
-    request.user.userprofile.save()
+
     tune.creator.userprofile.save()
+    request.user.userprofile.save()
+
     tune.save()
 
     return JsonResponse({'likes': tune.likes})
@@ -308,3 +312,8 @@ def delete_tune(request, tuneid):
     tune.delete()
 
     return redirect(reverse('django_jam_app:index'))
+
+def played_tune(request):
+    if request.user.is_authenticated:
+        request.user.userprofile.number_of_tunes_played += 1
+        request.user.userprofile.save()

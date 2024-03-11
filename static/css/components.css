@@ -154,6 +154,7 @@
   font-weight: var(--bold);
   text-overflow: ellipsis;
   white-space: nowrap;
+  overflow: hidden;
 }
 
 .tune-author {
@@ -162,6 +163,7 @@
   opacity: 0.6;
   text-overflow: ellipsis;
   white-space: nowrap;
+  overflow: hidden;
 }
 
 .tune-author a {
