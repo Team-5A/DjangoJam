@@ -29,6 +29,8 @@ playBars.forEach((playBar) => {
   let isDragging = false;
 
   const updatePlaying = () => {
+    update();
+
     if (!controls) return;
 
     if (playBar.getAttribute("data-force-stop") === "true") {
