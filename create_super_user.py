@@ -9,7 +9,13 @@ from django.contrib.auth.models import User
 from django_jam_app.models import Tune, UserProfile
 
 print("Creating super user with username: admin")
-os.system("python manage.py createsuperuser --username admin --email django_jam@gmail.com")
+
+os.environ['DJANGO_SUPERUSER_USERNAME'] = 'admin'
+os.environ['DJANGO_SUPERUSER_PASSWORD'] = 'admin'
+os.environ['DJANGO_SUPERUSER_EMAIL'] = 'admin@admin.com'
+
+os.system("python manage.py createsuperuser --noinput")
+
 print("Creating userprofile for super user")
 
 try:
@@ -29,4 +35,6 @@ except User.DoesNotExist:
     print("Exiting...")
     exit(1)
 
-
+print("Admin username: admin")
+print("Admin email: admin@admin.com")
+print("Admin password: admin")
