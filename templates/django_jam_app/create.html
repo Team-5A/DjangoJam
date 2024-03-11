@@ -33,12 +33,16 @@
         </div>
 
         <div class="control-panel">
-            <form class="control-panel-input" action="">
-                <input type="text" class="input" name="name" placeholder="Song Name..." size="10">
+            <form id="create-form" class="control-panel-input" action="">
+                {% csrf_token %}
 
-                <button type="submit" class="button button--secondary">
-                    Publish
-                </button>
+                <input type="text" class="input" id="song-name" name="name" placeholder="Song Name..." size="10">
+
+                {% if user.is_authenticated %}
+                    <button type="submit" class="button button--secondary">
+                        Publish
+                    </button>
+                {% endif %}
 
             </form>
 

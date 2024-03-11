@@ -7,8 +7,10 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.utils.text import slugify
 
 from django.http import JsonResponse
+import json
 
 from datetime import datetime
 
@@ -55,15 +57,26 @@ def create(request):
     form = TuneForm()
 
     if request.method == 'POST':
-        form = TuneForm(request.POST, creator=request.user)
+        if not request.user.is_authenticated:
+            return JsonResponse({'error': 'You must be logged in to create a tune.'}, status=403)
 
-        if form.is_valid():
+        json_data = json.loads(request.body)
+        name = json_data['name']
+        notes = json_data['notes']
+        bpm = json_data['bpm']
 
-            form.save(commit=True)
+        if Tune.objects.filter(name=name).exists() or Tune.objects.filter(slug=slugify(name)).exists():
+            return JsonResponse({'error': 'A tune with this name already exists.'}, status=400)
+        elif len(notes) == 0:
+            return JsonResponse({'error': 'The tune must have at least one note.'}, status=400)
+        elif len(notes) > 64:
+            return JsonResponse({'error': 'The tune must have at most notes string of length 64.'}, status=400)
+        elif bpm <= 0:
+            return JsonResponse({'error': 'The tune must have a positive BPM.'}, status=400)
+        
+        tune = Tune.objects.create(name=name, notes=notes, beats_per_minute=bpm, creator=request.user, slug=slugify(name))
+        return JsonResponse({'tune_id': tune.ID, 'tune_slug': tune.slug, 'user_slug': request.user.userprofile.slug })
 
-            return redirect('/django_jam_app/')
-        else:
-            print(form.errors)
 
     return render(request, 'django_jam_app/create.html', {'form': form})
 

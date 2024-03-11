@@ -155,3 +155,52 @@ recordButton.addEventListener("click", () => {
     notes = [];
   }
 });
+
+const createForm = document.getElementById("create-form");
+
+createForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const songName = document.getElementById("song-name").value;
+  const bpm = tempoInput.value;
+  const visibility = document.querySelector('input[name="visibility"]:checked').value;
+
+  if (notes.length === 0) {
+    alert("Please record some notes first!");
+    return;
+  }
+
+  if (songName.length === 0) {
+    alert("Please enter a song name!");
+    return;
+  }
+
+  if (bpm <= 0) {
+    alert("Please enter a bpm greater than 0!");
+    return;
+  }
+
+  const csrf = document.getElementsByName("csrfmiddlewaretoken")[0].value;
+
+  try {
+    const res = await fetch("/django_jam_app/create/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrf,
+      },
+      body: JSON.stringify({ name: songName, notes: notes.join(","), bpm: Number(bpm), visibility }),
+    });
+
+    const data = await res.json();
+    console.log(data);
+
+    if (res.status === 400) {
+      throw new Error(data.error);
+    }
+
+    window.location.href = `/django_jam_app/profile/${data.user_slug}/`;
+  } catch (error) {
+    alert(error);
+  }
+});
