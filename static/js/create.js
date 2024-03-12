@@ -164,11 +164,16 @@ Object.keys(frequencyMap).forEach((note) => {
     noteExplosion.classList.add("note-explosion");
     noteExplosion.style.setProperty("--note-explosion-color", color);
 
-    const x = (normalISaved / normalI) * keyboard.clientWidth;
+    const x = ((normalISaved - 1) / normalI) * keyboard.clientWidth;
     const y = noteExplosionContainer.clientHeight * 0.5;
+    console.log(x, y);
 
     noteExplosion.style.left = `${x}px`;
     noteExplosion.style.top = `${y}px`;
+
+    requestAnimationFrame(() => {
+      noteExplosion.style.top = `${y - noteExplosion.clientHeight * 0.5}px`;
+    });
 
     noteExplosion.addEventListener("animationend", () => {
       noteExplosion.remove();

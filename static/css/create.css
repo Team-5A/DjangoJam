@@ -155,6 +155,7 @@ main {
   position: relative;
   flex-grow: 1;
   width: 100%;
+  min-height: 5rem;
 }
 
 .note-explosion {
@@ -165,6 +166,7 @@ main {
   animation: explode 0.5s ease;
   animation-fill-mode: forwards;
   background: radial-gradient(var(--note-explosion-color), transparent);
+  transform: translate(-50%);
 }
 
 @keyframes explode {
@@ -271,4 +273,50 @@ main {
   font-size: 1rem;
   color: var(--text-color);
   font-weight: var(--semibold);
+}
+
+@media screen and (max-width: 1500px) {
+  .controls {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  #keyboard {
+    padding: 1.5rem;
+    padding-top: 1rem;
+  }
+
+  .control-panel {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #keyboard {
+    height: 20rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .keyboard-top button {
+    height: 1.75rem;
+  }
+
+  .keyboard-buttons {
+    height: 1.75rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #keyboard {
+    height: 16rem;
+    padding: 1rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  #keyboard {
+    height: 14rem;
+    padding: 1rem;
+  }
 }
