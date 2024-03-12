@@ -18,4 +18,5 @@ urlpatterns = [
     path('like_tune/<int:tune_id>/', views.like_tune, name='like_tune'),
     path('unlike_tune/<int:tune_id>/', views.unlike_tune, name='unlike_tune'),
     path('played_tune/', views.played_tune, name='played_tune'),
+    path('upload_profile_picture/', views.upload_profile_picture, name='upload_profile_picture'),
 ]

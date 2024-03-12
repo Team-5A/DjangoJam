@@ -338,3 +338,17 @@ def played_tune(request):
         request.user.userprofile.save()
     
     return HttpResponse(status=200)
+
+@login_required
+def upload_profile_picture(request):
+    profile = request.user.userprofile
+
+    if profile.picture:
+        profile.picture.delete()
+
+    if 'profile_picture' in request.FILES:
+        profile.picture = request.FILES['profile_picture']
+
+    profile.save()
+
+    return JsonResponse({'picture_url': profile.picture.url })

@@ -29,6 +29,14 @@
           {% else %}
               <img src="{% static 'images/default-profile-picture.svg' %}" alt="{{ user_profile.user.username }}'s profile picture">
           {% endif %}
+
+          {% if user_profile|is_current_user:request.user %}
+            <div class="upload-container">
+              {% csrf_token %}
+              <input type="file" id="upload-picture">
+              <img src="{% static 'images/icons/camera.svg' %}" alt="Upload Profile Picture">
+            </div>
+          {% endif %}
         </div>
 
         <div class="profile-info">
