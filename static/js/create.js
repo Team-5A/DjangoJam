@@ -166,7 +166,6 @@ Object.keys(frequencyMap).forEach((note) => {
 
     const x = ((normalISaved - 1) / normalI) * keyboard.clientWidth;
     const y = noteExplosionContainer.clientHeight * 0.5;
-    console.log(x, y);
 
     noteExplosion.style.left = `${x}px`;
     noteExplosion.style.top = `${y}px`;
